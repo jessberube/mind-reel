@@ -25,7 +25,7 @@
     --muted: #55666F;
     --border: rgba(44, 65, 77, 0.14);
     --accent: #2C414D;
-    --accent-soft: rgba(44, 65, 77, 0.12);
+    --accent-soft: #DDEFF0;
     --gold: #6B7114;
     --pink: #2C414D;
     --violet: #2C414D;
@@ -491,6 +491,24 @@
   #done textarea { background: rgba(0, 0, 0, 0.22); color: #F5F4EE; border-color: rgba(245, 244, 238, 0.2); }
   #done textarea::placeholder { color: #9AA7A6; }
   #done textarea:focus { border-color: #E9F056; box-shadow: 0 0 0 4px rgba(233, 240, 86, 0.18); }
+
+  /* Aqua accents */
+  .tabs { background: #DDEFF0; }
+  .tabs button:hover { background: rgba(44, 65, 77, 0.08); }
+  .level, .notes li, .info details { background: #DDEFF0; border-color: rgba(44, 65, 77, 0.10); }
+  .level .badge { background: linear-gradient(#DDEFF0, #DDEFF0) padding-box, linear-gradient(#2C414D, #2C414D) border-box; }
+  .empty { background: rgba(221, 239, 240, 0.55); border-color: rgba(44, 65, 77, 0.22); }
+  button:hover, .btn:hover { background: #DDEFF0; }
+  .primary:hover { background: #1F2F38; }
+  .start .primary:hover { background: #E9F056; }
+  .stats > div { background: rgba(221, 239, 240, 0.12); border-color: rgba(221, 239, 240, 0.25); }
+  header { box-shadow: inset 0 -4px 0 #DDEFF0; }
+  input[type="range"] { background: #DDEFF0; border: 1px solid rgba(44, 65, 77, 0.18); }
+  .nag button:hover { background: rgba(221, 239, 240, 0.15); }
+  .nag .primary:hover { background: #E9F056; }
+  #toast button:hover { background: rgba(221, 239, 240, 0.15); }
+  #done button:hover, #paused button:hover, #quiz .xbtn:hover { background: rgba(221, 239, 240, 0.15); }
+  #done .primary:hover, #paused .primary:hover { background: #E9F056; }
 </style>
 
 </head>
