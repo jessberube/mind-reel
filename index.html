@@ -2,39 +2,39 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://gc.zgo.at; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' blob: data: https://flipbookmind.goatcounter.com; connect-src 'self' data: https://flipbookmind.goatcounter.com; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' blob: data:; connect-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#07051a">
-<meta name="description" content="A free rapid-imaging practice tool inspired by William Bengston’s Image Cycling® technique. Works offline; your images never leave your device.">
+<meta name="theme-color" content="#1F2F38">
+<meta name="description" content="A cozy place to practice rapid image cycling with your own goals. Everything stays on your device.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Flipbook Mind">
+<meta name="apple-mobile-web-app-title" content="Mind Reel">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="icon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<title>Flipbook Mind</title>
+<title>Mind Reel</title>
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
     color-scheme: dark;
-    --bg: #07051a;
-    --surface: rgba(255, 255, 255, 0.045);
-    --surface-2: rgba(255, 255, 255, 0.08);
-    --text: #f3f0ff;
-    --muted: #a39cc4;
-    --border: rgba(255, 255, 255, 0.10);
-    --accent: #a78bfa;
-    --accent-soft: rgba(167, 139, 250, 0.16);
-    --gold: #fbbf77;
-    --pink: #f472b6;
-    --violet: #8b5cf6;
-    --good: #5eead4;
-    --bad: #fb7185;
-    --grad: linear-gradient(120deg, #8b5cf6 0%, #ec4899 55%, #f59e0b 100%);
-    --grad-text: linear-gradient(100deg, #fde68a 0%, #f9a8d4 45%, #c4b5fd 100%);
-    --glow: 0 8px 32px rgba(236, 72, 153, 0.35), 0 2px 10px rgba(139, 92, 246, 0.4);
-    --display: "Fraunces Variable", "Fraunces", Georgia, serif;
+    --bg: #1F2F38;
+    --surface: rgba(44, 65, 77, 0.82);
+    --surface-2: rgba(245, 244, 238, 0.08);
+    --text: #F5F4EE;
+    --muted: #C9CBC0;
+    --border: rgba(232, 221, 200, 0.16);
+    --accent: #E9F056;
+    --accent-soft: rgba(233, 240, 86, 0.14);
+    --gold: #E9F056;
+    --pink: #8C941A;
+    --violet: #8C941A;
+    --good: #9CD3A8;
+    --bad: #F09A8E;
+    --grad: linear-gradient(120deg, #E9F056 0%, #E9F056 100%);
+    --grad-text: linear-gradient(100deg, #E9F056 0%, #E9F056 100%);
+    --glow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    --display: "Calistoga", Georgia, serif;
   }
   * { box-sizing: border-box; }
   [hidden] { display: none !important; }
@@ -42,7 +42,7 @@
   body {
     background: var(--bg);
     color: var(--text);
-    font-family: "Inter Variable", "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-family: "Poppins", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
     line-height: 1.55;
     min-height: 100vh;
     overflow-x: hidden;
@@ -51,7 +51,7 @@
   /* Night sky: stars + drifting aurora */
   .sky { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
   .sky::before {
-    content: ""; position: absolute; inset: 0; opacity: 0.7;
+    content: none; position: absolute; inset: 0; opacity: 0.7;
     background-image:
       radial-gradient(1px 1px at 12% 18%, #fff 50%, transparent 51%),
       radial-gradient(1px 1px at 78% 12%, #fff 50%, transparent 51%),
@@ -70,9 +70,9 @@
     position: absolute; border-radius: 50%; filter: blur(90px); opacity: 0.45;
     animation: drift 26s ease-in-out infinite alternate;
   }
-  .sky span:nth-child(1) { width: 60vmax; height: 60vmax; background: #6d28d9; top: -25vmax; left: -15vmax; }
-  .sky span:nth-child(2) { width: 50vmax; height: 50vmax; background: #db2777; top: 20vh; right: -25vmax; animation-duration: 32s; opacity: 0.3; }
-  .sky span:nth-child(3) { width: 45vmax; height: 45vmax; background: #0d9488; bottom: -25vmax; left: 15vw; animation-duration: 38s; opacity: 0.25; }
+  .sky span:nth-child(1) { width: 60vmax; height: 60vmax; background: #8C941A; top: -25vmax; left: -15vmax; opacity: 0.16; }
+  .sky span:nth-child(2) { width: 50vmax; height: 50vmax; background: #E8DDC8; top: 20vh; right: -25vmax; animation-duration: 32s; opacity: 0.07; }
+  .sky span:nth-child(3) { width: 45vmax; height: 45vmax; background: #DDEFF0; bottom: -25vmax; left: 15vw; animation-duration: 38s; opacity: 0.06; }
   @keyframes drift {
     from { transform: translate(0, 0) scale(1); }
     to   { transform: translate(6vw, 4vh) scale(1.15); }
@@ -94,16 +94,16 @@
   .orb {
     width: 52px; height: 52px; border-radius: 50%; flex: none;
     background: radial-gradient(circle at 35% 30%, #fff7 0%, transparent 35%), var(--grad);
-    box-shadow: 0 0 30px rgba(236, 72, 153, 0.55), 0 0 60px rgba(139, 92, 246, 0.35);
+    background: radial-gradient(circle at 35% 30%, #fff9 0%, transparent 35%), linear-gradient(135deg, #E9F056, #DDEFF0);
+    box-shadow: 0 0 28px rgba(233, 240, 86, 0.35);
     animation: pulse 4s ease-in-out infinite;
   }
-  @keyframes pulse { 50% { transform: scale(1.06); box-shadow: 0 0 40px rgba(236,72,153,0.7), 0 0 80px rgba(139,92,246,0.5); } }
+  @keyframes pulse { 50% { transform: scale(1.06); } }
   h1 {
-    font-family: var(--display); font-weight: 600; font-size: clamp(1.9rem, 5vw, 2.6rem);
-    margin: 0; letter-spacing: -0.02em; line-height: 1.1;
-    background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
+    font-family: var(--display); font-weight: 400; font-size: clamp(1.9rem, 5vw, 2.6rem);
+    margin: 0; letter-spacing: -0.01em; line-height: 1.1; color: var(--text);
   }
-  h2 { font-family: var(--display); font-weight: 600; font-size: 1.3rem; margin: 0 0 12px; letter-spacing: -0.01em; }
+  h2 { font-family: var(--display); font-weight: 400; font-size: 1.3rem; margin: 0 0 12px; letter-spacing: -0.01em; }
   .sub { color: var(--muted); margin: 4px 0 0; }
   .stats { display: flex; gap: 10px; }
   .stats > div {
@@ -116,15 +116,15 @@
     background: var(--surface); border: 1px solid var(--border);
     border-radius: 24px; padding: 24px; margin-top: 22px;
     backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px);
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(245, 244, 238, 0.05);
   }
   .row { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; }
   input[type="text"] {
     flex: 1 1 220px; min-width: 0; padding: 12px 16px; font: inherit;
     border: 1px solid var(--border); border-radius: 999px;
-    background: rgba(0, 0, 0, 0.25); color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s;
+    background: rgba(0, 0, 0, 0.2); color: var(--text); outline: none; transition: border-color .2s, box-shadow .2s;
   }
-  input[type="text"]::placeholder { color: #7d76a0; }
+  input[type="text"]::placeholder { color: #9AA7A6; }
   input[type="text"]:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
   button, .btn {
     font: inherit; font-weight: 500; border: 1px solid var(--border); background: var(--surface-2);
@@ -132,14 +132,14 @@
     display: inline-flex; align-items: center; gap: 6px;
     transition: transform .15s, box-shadow .2s, border-color .2s, background .2s;
   }
-  button:hover, .btn:hover { border-color: rgba(255, 255, 255, 0.3); transform: translateY(-1px); }
+  button:hover, .btn:hover { border-color: rgba(232, 221, 200, 0.4); transform: translateY(-1px); }
   button:active, .btn:active { transform: translateY(0) scale(0.98); }
   button:disabled { opacity: 0.4; cursor: not-allowed; transform: none; box-shadow: none; }
   .primary {
-    background: var(--grad); background-size: 160% 100%; color: #fff; border-color: transparent;
+    background: #E9F056; color: #1F2F38; border-color: #E9F056;
     font-weight: 600; box-shadow: var(--glow);
   }
-  .primary:hover { background-position: 100% 0; border-color: transparent; box-shadow: 0 10px 40px rgba(236,72,153,0.5), 0 2px 14px rgba(139,92,246,0.5); }
+  .primary:hover { border-color: #E9F056; box-shadow: 0 8px 28px rgba(233, 240, 86, 0.25); }
   .big { padding: 16px 36px; font-size: 1.1rem; letter-spacing: 0.01em; }
 
   .grid {
@@ -149,10 +149,10 @@
   .tile {
     position: relative; aspect-ratio: 1; border-radius: 16px; overflow: hidden;
     background: var(--accent-soft); display: flex; align-items: center; justify-content: center;
-    text-align: center; font-weight: 600; font-size: 0.85rem; padding: 8px; color: #fff;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35); transition: transform .2s, box-shadow .2s;
+    text-align: center; font-weight: 600; font-size: 0.85rem; padding: 8px; color: #F5F4EE;
+    box-shadow: 0 6px 18px rgba(44, 65, 77, 0.2); transition: transform .2s, box-shadow .2s;
   }
-  .grid .tile:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 28px rgba(139, 92, 246, 0.45); }
+  .grid .tile:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 10px 28px rgba(0, 0, 0, 0.45); }
   .tile img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
   .tile .num {
     position: absolute; left: 7px; bottom: 5px; font-size: 0.72rem; font-weight: 700; color: #fff;
@@ -177,15 +177,15 @@
   label.field output { color: var(--gold); font-weight: 600; }
   input[type="range"] {
     -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 999px;
-    background: linear-gradient(90deg, #8b5cf6, #ec4899, #f59e0b); outline: none; opacity: 0.9;
+    background: rgba(232, 221, 200, 0.25); outline: none;
   }
   input[type="range"]::-webkit-slider-thumb {
     -webkit-appearance: none; width: 20px; height: 20px; border-radius: 50%;
-    background: #fff; box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.35), 0 2px 8px rgba(0,0,0,0.4); cursor: pointer;
+    background: #E9F056; border: 2px solid #1F2F38; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); cursor: pointer;
   }
   input[type="range"]::-moz-range-thumb {
-    width: 20px; height: 20px; border: none; border-radius: 50%;
-    background: #fff; box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.35); cursor: pointer;
+    width: 20px; height: 20px; border: 2px solid #1F2F38; border-radius: 50%;
+    background: #E9F056; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4); cursor: pointer;
   }
   .check { display: flex; gap: 10px; align-items: center; margin-bottom: 12px; font-size: 0.92rem; cursor: pointer; }
   .check input { accent-color: var(--pink); width: 18px; height: 18px; }
@@ -196,12 +196,12 @@
     margin-top: 26px; background: var(--surface); border: 1px solid var(--border);
     border-radius: 20px; padding: 16px 22px; backdrop-filter: blur(12px);
   }
-  summary { cursor: pointer; font-family: var(--display); font-weight: 600; font-size: 1.1rem; }
+  summary { cursor: pointer; font-family: var(--display); font-weight: 400; font-size: 1.1rem; }
   details ol { padding-left: 20px; color: var(--muted); margin-bottom: 4px; }
   details li { margin: 6px 0; }
   .warn { font-size: 0.82rem; color: var(--muted); margin-top: 10px; }
   .info > p { color: var(--muted); margin: 0; }
-  .info details { margin-top: 12px; background: rgba(0, 0, 0, 0.2); }
+  .info details { margin-top: 12px; background: rgba(0, 0, 0, 0.18); }
   .info a, .disclaimer a { color: var(--accent); }
   details p { color: var(--muted); margin: 10px 0 0; }
   details ul { padding-left: 20px; color: var(--muted); margin-bottom: 4px; }
@@ -210,7 +210,7 @@
   input[type="file"] { display: none; }
   .disclaimer {
     margin-top: 30px; padding: 20px 22px; border-radius: 20px;
-    border: 1px solid rgba(251, 191, 119, 0.35); background: rgba(251, 191, 119, 0.06);
+    border: 1px solid rgba(232, 221, 200, 0.25); background: rgba(232, 221, 200, 0.05);
   }
   .disclaimer h2 { font-size: 1.1rem; margin-bottom: 4px; color: var(--gold); }
   .disclaimer p { color: var(--muted); font-size: 0.88rem; margin: 8px 0 0; }
@@ -229,8 +229,8 @@
   }
   .tabs button:hover { transform: none; background: var(--surface-2); }
   .tabs button small { color: var(--muted); font-size: 0.76rem; font-weight: 400; }
-  .tabs button[aria-selected="true"] { background: var(--grad); color: #fff; box-shadow: var(--glow); }
-  .tabs button[aria-selected="true"] small { color: rgba(255,255,255,0.85); }
+  .tabs button[aria-selected="true"] { background: #E9F056; color: #1F2F38; box-shadow: var(--glow); }
+  .tabs button[aria-selected="true"] small { color: rgba(31, 47, 56, 0.8); }
   .panel[hidden] { display: none; }
   @media (max-width: 480px) { .tabs { border-radius: 22px; } .tabs button { border-radius: 16px; } }
 
@@ -238,20 +238,19 @@
   .levels { display: grid; gap: 12px; }
   .level {
     display: grid; grid-template-columns: 44px 1fr auto; gap: 14px; align-items: center;
-    background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border); border-radius: 18px; padding: 14px 16px;
+    background: rgba(0, 0, 0, 0.18); border: 1px solid var(--border); border-radius: 18px; padding: 14px 16px;
     transition: border-color .2s, transform .2s;
   }
-  .level:hover { border-color: rgba(167, 139, 250, 0.45); transform: translateX(2px); }
+  .level:hover { border-color: rgba(232, 221, 200, 0.45); transform: translateX(2px); }
   .level .badge {
     width: 44px; height: 44px; border-radius: 50%; position: relative;
     display: flex; align-items: center; justify-content: center;
-    font-family: var(--display); font-weight: 700; font-size: 1.15rem; color: var(--text);
-    background: linear-gradient(var(--bg), var(--bg)) padding-box, var(--grad) border-box;
+    font-family: var(--display); font-weight: 400; font-size: 1.15rem; color: var(--text);
+    background: linear-gradient(var(--bg), var(--bg)) padding-box, linear-gradient(#8C941A, #8C941A) border-box;
     border: 2px solid transparent;
   }
   .level.done .badge {
-    background: linear-gradient(135deg, #fde68a, #f59e0b); color: #3b2300; border: none;
-    box-shadow: 0 0 18px rgba(251, 191, 119, 0.55);
+    background: #E9F056; color: #1F2F38; border: none;
   }
   .level h3 { font-size: 1rem; margin: 0; }
   .level p { margin: 2px 0 0; color: var(--muted); font-size: 0.86rem; }
@@ -287,13 +286,13 @@
     position: absolute; font-family: var(--display); font-size: 7rem; font-weight: 300;
     background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  #bar { position: absolute; left: 0; bottom: 0; height: 3px; background: var(--grad); width: 0; box-shadow: 0 0 12px rgba(236,72,153,0.8); }
+  #bar { position: absolute; left: 0; bottom: 0; height: 3px; background: #E9F056; width: 0; }
   #hint {
     position: absolute; top: calc(18px + env(safe-area-inset-top)); left: 64px; right: 64px; text-align: center;
     color: rgba(255,255,255,0.55); font-size: 0.9rem; transition: opacity 1s;
   }
   #paused {
-    position: absolute; color: #fff; font-size: 1.1rem; background: rgba(20, 14, 40, 0.88); text-align: center;
+    position: absolute; color: #fff; font-size: 1.1rem; background: rgba(44, 65, 77, 0.94); text-align: center;
     border: 1px solid var(--border); padding: 20px 24px; border-radius: 24px; display: none; backdrop-filter: blur(10px);
     cursor: default;
   }
@@ -310,23 +309,23 @@
     padding: calc(24px + env(safe-area-inset-top)) calc(24px + env(safe-area-inset-right)) calc(24px + env(safe-area-inset-bottom)) calc(24px + env(safe-area-inset-left));
     cursor: default; overflow-y: auto;
     background:
-      radial-gradient(ellipse at 20% 10%, rgba(109, 40, 217, 0.45), transparent 60%),
-      radial-gradient(ellipse at 85% 90%, rgba(219, 39, 119, 0.3), transparent 55%),
-      var(--bg);
+      radial-gradient(ellipse at 20% 10%, rgba(221, 239, 240, 0.16), transparent 60%),
+      radial-gradient(ellipse at 85% 90%, rgba(233, 240, 86, 0.12), transparent 55%),
+      #2C414D;
   }
   #done h2 {
     font-size: clamp(2rem, 6vw, 2.8rem); margin-bottom: 8px;
     background: var(--grad-text); -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  #done p { color: var(--muted); max-width: 440px; font-size: 1.05rem; }
+  #done p { color: rgba(245, 244, 238, 0.82); max-width: 440px; font-size: 1.05rem; }
 
   /* Quiz */
-  #quiz .qtop { display: flex; justify-content: space-between; width: min(520px, 100%); color: var(--muted); font-size: 0.9rem; }
+  #quiz .qtop { display: flex; justify-content: space-between; width: min(520px, 100%); color: rgba(245, 244, 238, 0.82); font-size: 0.9rem; }
   #quiz .qshow { width: min(220px, 50vw); aspect-ratio: 1; margin: 16px 0; }
-  #quiz .qshow .tile { width: 100%; height: 100%; border-radius: 22px; box-shadow: 0 0 40px rgba(139, 92, 246, 0.5); }
+  #quiz .qshow .tile { width: 100%; height: 100%; border-radius: 22px; box-shadow: 0 0 40px rgba(233, 240, 86, 0.3); }
   #quiz .qopts { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; width: min(520px, 100%); }
   @media (max-width: 480px) { #quiz .qopts { grid-template-columns: repeat(2, 1fr); } }
-  #quiz .opt { aspect-ratio: 1; padding: 0; border: 3px solid transparent; border-radius: 18px; overflow: hidden; background: #1a1628; }
+  #quiz .opt { aspect-ratio: 1; padding: 0; border: 3px solid transparent; border-radius: 18px; overflow: hidden; background: #1F2F38; }
   #quiz .opt:hover { border-color: rgba(255,255,255,0.35); }
   #quiz .opt.right { border-color: var(--good); box-shadow: 0 0 24px rgba(94, 234, 212, 0.6); }
   #quiz .opt.wrong { border-color: var(--bad); box-shadow: 0 0 24px rgba(251, 113, 133, 0.6); }
@@ -339,18 +338,18 @@
   .cardrow { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; font-size: 0.92rem; }
   .cardrow > span { color: var(--muted); }
   select {
-    font: inherit; color: var(--text); background: rgba(0, 0, 0, 0.25); border: 1px solid var(--border);
+    font: inherit; color: var(--text); background: rgba(0, 0, 0, 0.2); border: 1px solid var(--border);
     border-radius: 999px; padding: 9px 16px; outline: none; cursor: pointer;
   }
   select:focus-visible { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
-  select option { background: #140f2e; color: var(--text); }
+  select option { background: #1F2F38; color: var(--text); }
   .swatches { display: flex; gap: 10px; flex-wrap: wrap; }
   button.swatch {
-    width: 34px; height: 34px; padding: 0; border-radius: 50%; border: 2px solid rgba(255, 255, 255, 0.25);
+    width: 34px; height: 34px; padding: 0; border-radius: 50%; border: 2px solid rgba(245, 244, 238, 0.3);
     justify-content: center; font-size: 0.8rem; font-weight: 700;
   }
-  button.swatch:hover { transform: scale(1.08); border-color: rgba(255, 255, 255, 0.6); }
-  button.swatch[aria-pressed="true"] { border-color: #fff; box-shadow: 0 0 0 3px var(--accent); }
+  button.swatch:hover { transform: scale(1.08); border-color: rgba(245, 244, 238, 0.6); }
+  button.swatch[aria-pressed="true"] { border-color: #F5F4EE; box-shadow: 0 0 0 3px var(--accent); }
   .tile:focus-visible, button:focus-visible, .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
   .tile .cap {
     position: absolute; left: 0; right: 0; bottom: 0; padding: 20px 8px 24px; font-size: 0.72rem; line-height: 1.25;
@@ -367,25 +366,25 @@
   .tile:hover .grip, .tile:focus-within .grip { opacity: 1; }
   @media (hover: none) { .tile .grip { opacity: 1; } }
   .grid.sorting .tile { transition: none; }
-  .tile.dragging { opacity: 0.75; transform: scale(1.06); z-index: 2; box-shadow: 0 0 0 3px var(--accent), 0 16px 40px rgba(139, 92, 246, 0.55); }
+  .tile.dragging { opacity: 0.75; transform: scale(1.06); z-index: 2; box-shadow: 0 0 0 3px var(--accent), 0 16px 40px rgba(0, 0, 0, 0.5); }
   .foot { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
   .foot .count { margin: 0; }
   .small { padding: 7px 14px; font-size: 0.85rem; }
   .tip { font-size: 0.82rem; color: var(--muted); margin: 12px 0 0; }
   .warn.hot { color: var(--gold); }
   .danger { color: var(--bad); }
-  .level.next { border-color: rgba(251, 191, 119, 0.55); box-shadow: 0 0 22px rgba(251, 191, 119, 0.12); }
+  .level.next { border-color: rgba(233, 240, 86, 0.6); box-shadow: 0 0 22px rgba(233, 240, 86, 0.1); }
   .level .tag {
     display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 999px; vertical-align: 2px;
-    font-size: 0.7rem; font-weight: 600; color: #3b2300; background: linear-gradient(135deg, #fde68a, #f59e0b);
+    font-size: 0.7rem; font-weight: 600; color: #1F2F38; background: #E9F056;
   }
 
   /* Dialogs + toast */
   dialog {
-    background: #140f2e; color: var(--text); border: 1px solid var(--border); border-radius: 24px;
-    padding: 24px; width: min(440px, calc(100vw - 32px)); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
+    background: #2C414D; color: var(--text); border: 1px solid var(--border); border-radius: 24px;
+    padding: 24px; width: min(440px, calc(100vw - 32px)); box-shadow: 0 30px 80px rgba(0, 0, 0, 0.5);
   }
-  dialog::backdrop { background: rgba(4, 2, 16, 0.72); backdrop-filter: blur(4px); }
+  dialog::backdrop { background: rgba(15, 24, 29, 0.72); backdrop-filter: blur(4px); }
   dialog p { color: var(--muted); margin: 0 0 18px; }
   dialog input[type="text"] { width: 100%; }
   dialog .row.end { justify-content: flex-end; margin-top: 18px; }
@@ -400,14 +399,42 @@
     position: fixed; left: 50%; bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 20;
     transform: translate(-50%, 20px); opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s;
     display: flex; gap: 12px; align-items: center; max-width: calc(100vw - 32px);
-    background: #1d1640; border: 1px solid var(--border); border-radius: 999px; padding: 10px 12px 10px 20px;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    background: #2C414D; border: 1px solid var(--border); border-radius: 999px; padding: 10px 12px 10px 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.45);
   }
   #toast.on { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
   #toast button { padding: 6px 14px; }
+  /* Personal additions: lists, backup reminder, session notes */
+  .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+  .listbar { margin: 4px 0 14px; }
+  .listbar select { flex: 1 1 180px; min-width: 0; }
+  .nag {
+    margin-top: 22px; padding: 16px 20px; border-radius: 20px; display: flex; gap: 12px 18px;
+    align-items: center; justify-content: space-between; flex-wrap: wrap;
+    background: rgba(140, 148, 26, 0.18); border: 1px solid rgba(233, 240, 86, 0.45);
+  }
+  .nag p { margin: 0; flex: 1 1 260px; }
+  .nag b { color: var(--gold); }
+  .notebox { width: min(440px, 100%); margin-top: 18px; text-align: left; }
+  .notebox label { display: block; margin-bottom: 8px; font-size: 0.95rem; }
+  .notebox label span { color: rgba(245, 244, 238, 0.7); }
+  textarea {
+    width: 100%; font: inherit; color: var(--text); background: rgba(0, 0, 0, 0.22);
+    border: 1px solid var(--border); border-radius: 16px; padding: 12px 14px; resize: vertical; outline: none;
+  }
+  textarea::placeholder { color: #9AA7A6; }
+  textarea:focus { border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .notes { list-style: none; padding: 0; margin: 14px 0 0; display: grid; gap: 10px; }
+  .notes li {
+    background: rgba(0, 0, 0, 0.18); border: 1px solid var(--border); border-radius: 16px;
+    padding: 12px 14px; display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; align-items: start;
+  }
+  .notes .nmeta { color: var(--muted); font-size: 0.8rem; }
+  .notes p { margin: 0; grid-column: 1; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .notes button { grid-column: 2; grid-row: 1 / span 2; }
   #stage .label {
     position: absolute; bottom: calc(64px + env(safe-area-inset-bottom)); left: 16px; right: 16px; text-align: center; color: #fff;
-    font-family: var(--display); font-size: clamp(1.2rem, 4vw, 2rem); font-weight: 600; text-shadow: 0 2px 14px #000;
+    font-family: var(--display); font-size: clamp(1.2rem, 4vw, 2rem); font-weight: 400; text-shadow: 0 2px 14px #000;
   }
 </style>
 
@@ -419,45 +446,60 @@
     <div class="brand">
       <div class="orb" aria-hidden="true"></div>
       <div>
-        <h1>Flipbook Mind</h1>
-        <p class="sub">A free rapid-imaging practice tool inspired by William Bengston’s Image Cycling® technique.</p>
+        <h1>Mind Reel</h1>
+        <p class="sub">A cozy place to practice rapid image cycling with your own goals.</p>
       </div>
     </div>
     <div class="stats">
-      <div><b id="statStreak">0</b> day streak</div>
-      <div><b id="statTotal">0</b> sessions</div>
+      <div><b id="statStreak">0</b> days in a row</div>
+      <div><b id="statTotal">0</b> sessions done</div>
     </div>
   </header>
 
+  <div id="backupNag" class="nag" hidden>
+    <p id="nagMsg"></p>
+    <div class="row">
+      <button id="nagLater" class="small">Not today</button>
+      <button id="nagBackup" class="small primary">Save a backup</button>
+    </div>
+  </div>
+
   <section class="card">
-    <h2>Your list</h2>
-    <p class="sub" style="margin-top:-6px">Add one image for each thing you want. Aim for at least 20. Training uses them in this order: drag <b>⠿</b> to reorder, tap an item to add a caption.</p>
+    <h2>Your goals</h2>
+    <div class="row listbar">
+      <label class="sr" for="listSel">Choose a list</label>
+      <select id="listSel"></select>
+      <button id="listNew" class="small">+ New list</button>
+      <button id="listRen" class="small">Rename</button>
+      <button id="listDel" class="small danger">Delete</button>
+    </div>
+    <p class="sub" style="margin-top:-6px">Add one picture for each thing you want. Twenty or more works best. Sessions play them in this order. Drag <b>⠿</b> to move one, or tap it to add a caption.</p>
     <div class="row" style="margin-top:14px">
-      <label class="btn primary" for="fileIn">+ Add images</label>
+      <label class="btn primary" for="fileIn">+ Add pictures</label>
       <input id="fileIn" type="file" accept="image/*" multiple>
-      <input id="textIn" type="text" placeholder="…or type a goal (e.g. “Visit Japan”)" maxlength="60" aria-label="Goal text">
+      <input id="textIn" type="text" placeholder="Or type a goal, like “Weekend in Maine”" maxlength="60" aria-label="Goal text">
       <button id="addText">Add</button>
     </div>
     <div id="cardCtl" class="cardctl" hidden>
-      <label class="cardrow" for="cardStyle"><span>Text card colours</span>
+      <label class="cardrow" for="cardStyle"><span>Text card colors</span>
         <select id="cardStyle">
-          <option value="colourful">Colourful</option>
-          <option value="plain">Choose colours</option>
+          <option value="colourful">Brand mix</option>
+          <option value="plain">Pick my own</option>
         </select>
       </label>
       <div id="cardPlain" hidden>
-        <div class="cardrow"><span id="swBgLbl">Background</span><div id="swBg" class="swatches" role="group" aria-labelledby="swBgLbl"></div></div>
-        <div class="cardrow"><span id="swFgLbl">Text</span><div id="swFg" class="swatches" role="group" aria-labelledby="swFgLbl"></div></div>
+        <div class="cardrow"><span id="swBgLbl">Card color</span><div id="swBg" class="swatches" role="group" aria-labelledby="swBgLbl"></div></div>
+        <div class="cardrow"><span id="swFgLbl">Word color</span><div id="swFg" class="swatches" role="group" aria-labelledby="swFgLbl"></div></div>
       </div>
     </div>
     <div id="grid" class="grid"></div>
-    <div id="empty" class="empty">No items yet. Add images of your goals, or type them as text.</div>
+    <div id="empty" class="empty">Nothing here yet. Add pictures of what you want, or type your goals as words.</div>
     <div class="foot">
       <div id="count" class="count"></div>
       <div class="row">
-        <button id="installBtn" class="small" hidden>Install app</button>
-        <button id="exportBtn" class="small" hidden>Back up</button>
-        <button id="restoreBtn" class="small">Restore</button>
+        <button id="installBtn" class="small" hidden>Install</button>
+        <button id="exportBtn" class="small" hidden>Save backup</button>
+        <button id="restoreBtn" class="small">Load backup</button>
         <input id="importIn" type="file" accept="application/json,.json">
       </div>
     </div>
@@ -465,14 +507,14 @@
   </section>
 
   <div class="tabs" role="tablist" aria-label="Mode">
-    <button role="tab" id="tabCycle" aria-controls="panelCycle" aria-selected="true">Cycle with the app<small>The app flashes your images</small></button>
-    <button role="tab" id="tabTrain" aria-controls="panelTrain" aria-selected="false">Train your mind<small>Learn to cycle in your head</small></button>
+    <button role="tab" id="tabCycle" aria-controls="panelCycle" aria-selected="true">Watch them flash<small>The app plays your pictures</small></button>
+    <button role="tab" id="tabTrain" aria-controls="panelTrain" aria-selected="false">Practice in your head<small>Step by step, without the screen</small></button>
   </div>
 
   <!-- Mode 1: app cycling -->
   <div id="panelCycle" class="panel" role="tabpanel" aria-labelledby="tabCycle">
     <section class="card">
-      <h2>Session settings</h2>
+      <h2>Before you start</h2>
       <div class="settings">
         <div>
           <label class="field">
@@ -480,33 +522,33 @@
             <input id="speed" type="range" min="0.5" max="3" step="0.25">
           </label>
           <label class="field">
-            <span>Duration <output id="durOut"></output></span>
+            <span>Length <output id="durOut"></output></span>
             <input id="dur" type="range" min="1" max="15" step="1">
           </label>
         </div>
         <div>
-          <label class="check"><input id="shuffle" type="checkbox"> Shuffle every round</label>
-          <label class="check"><input id="xfade" type="checkbox"> Fade between images</label>
-          <label class="check"><input id="caps" type="checkbox"> Show captions</label>
-          <label class="check"><input id="chime" type="checkbox"> Soft chime at the end</label>
-          <label class="check"><input id="fs" type="checkbox"> Full screen</label>
-          <label class="check"><input id="fast" type="checkbox"> Allow fast speeds (above 3 per second)</label>
+          <label class="check"><input id="shuffle" type="checkbox"> Shuffle each time through</label>
+          <label class="check"><input id="xfade" type="checkbox"> Blend from one picture to the next</label>
+          <label class="check"><input id="caps" type="checkbox"> Show my captions</label>
+          <label class="check"><input id="chime" type="checkbox"> Gentle chime when time is up</label>
+          <label class="check"><input id="fs" type="checkbox"> Fill the whole screen</label>
+          <label class="check"><input id="fast" type="checkbox"> Unlock speeds over 3 per second</label>
         </div>
       </div>
-      <p id="speedWarn" class="warn">⚠️ Fast cycling creates flashing. If you are sensitive to flashing lights, use a slower speed.</p>
+      <p id="speedWarn" class="warn">⚠️ Cycling means flashing pictures. If flashing light bothers you, keep the speed low.</p>
     </section>
     <div class="start">
-      <button id="startBtn" class="primary big" disabled>▶ Start session</button>
+      <button id="startBtn" class="primary big" disabled>▶ Begin</button>
     </div>
   </div>
 
   <!-- Mode 2: mind training -->
   <div id="panelTrain" class="panel" role="tabpanel" aria-labelledby="tabTrain" hidden>
     <section class="card">
-      <h2>Train your mind</h2>
+      <h2>Practice in your head</h2>
       <p class="sub" style="margin-top:-6px">
-        In the full practice you cycle the images in your head, not on a screen. These levels take the images away
-        step by step, until you can run through your whole list with your eyes closed. Work through them in order, over several days if you need to.
+        The real practice happens in your mind, with no screen. Each level shows you fewer pictures, until you can run
+        your whole list with your eyes closed. Go in order. Take as many days as you need.
       </p>
       <div class="settings" style="margin-top:18px">
         <label class="field">
@@ -514,11 +556,11 @@
           <input id="pace" type="range" min="350" max="2500" step="50">
         </label>
         <label class="field">
-          <span>Practice length <output id="tdurOut"></output></span>
+          <span>Length <output id="tdurOut"></output></span>
           <input id="tdur" type="range" min="1" max="10" step="1">
         </label>
         <label class="field">
-          <span>Tick volume <output id="volOut"></output></span>
+          <span>Tick sound <output id="volOut"></output></span>
           <input id="vol" type="range" min="0" max="100" step="5">
         </label>
       </div>
@@ -527,45 +569,52 @@
     </section>
   </div>
 
+  <section class="card" id="notesCard" aria-labelledby="notesTitle" hidden>
+    <h2 id="notesTitle">Session notes</h2>
+    <p class="sub" style="margin-top:-6px">What came up after your sessions, newest first.</p>
+    <ol id="notesList" class="notes"></ol>
+    <div class="row" style="margin-top:12px"><button id="notesMore" class="small" hidden></button></div>
+  </section>
+
   <section class="card info" aria-labelledby="aboutTitle">
-    <h2 id="aboutTitle">About</h2>
-    <p>Flipbook Mind is a free rapid-imaging practice tool inspired by William Bengston’s Image Cycling® technique. For the authentic method and training, visit <a href="https://bengstonresearch.com/" target="_blank" rel="noopener">bengstonresearch.com</a>.</p>
+    <h2 id="aboutTitle">About this app</h2>
+    <p>Mind Reel is a personal tool for practicing rapid image cycling. The technique comes from William Bengston, who named it Image Cycling®. To learn the method from the source, visit <a href="https://bengstonresearch.com/" target="_blank" rel="noopener">bengstonresearch.com</a>.</p>
 
     <details>
       <summary>Who was William Bengston?</summary>
-      <p>Dr William (Bill) Bengston (1950–2025) was an American sociologist. For 40 years he taught statistics and research methods at St Joseph’s College (now St Joseph’s University) in New York, and from 2010 to 2022 he was president of the Society for Scientific Exploration. He spent more than four decades researching hands-on healing, and described himself as a sceptic who set out to test it rather than a believer. He died at home on 16 April 2025, aged 75.</p>
+      <p>William “Bill” Bengston (1950–2025) was a sociologist from the United States. He taught research methods and statistics at St. Joseph’s College in New York, now St. Joseph’s University, for about 40 years. He also led the Society for Scientific Exploration from 2010 to 2022. He studied hands-on healing for more than four decades and called himself a skeptic who wanted to test it. He died on April 16, 2025, at age 75.</p>
     </details>
 
     <details>
-      <summary>How to cycle</summary>
+      <summary>How the practice works</summary>
       <ol>
-        <li>Write a list of at least 20 specific things you want for yourself. Make them concrete: not “be happy”, but a specific place you want to visit.</li>
-        <li>Turn each item into one vivid image that shows it already achieved, as if it’s happening now.</li>
-        <li>Memorise the list in order, so each image comes to mind instantly, like flipping a flip-book.</li>
-        <li>Cycle through the images in your mind: about one per second at first, then two per second, then faster, until the whole list flashes by in a second or so. As you speed up, let go of the feelings attached to each image.</li>
-        <li>Keep it light and relaxed, and practise a little every day. When you get something on your list, or stop wanting it, replace it with something new.</li>
+        <li>List 20 or more things you want for yourself. Be specific. Pick a real place you want to see, not a feeling like “be happy.”</li>
+        <li>Give each goal one clear picture that shows it already done.</li>
+        <li>Learn the list in order until each picture pops up right away.</li>
+        <li>Run through the pictures in your mind. Start at about one per second. Then go faster, until the whole list goes by in about a second. As you speed up, let go of how each one makes you feel.</li>
+        <li>Keep it easy and do a little every day. When you get something, or stop wanting it, swap in a new goal.</li>
       </ol>
-      <p>Advanced practitioners go on to <b>hypercycling</b>: placing all the images on an imagined spinning object, like a rolodex or a clock face.</p>
+      <p>Once this feels natural, some people try <b>hypercycling</b>. They put all the pictures on something spinning in their mind, like a wheel or a clock.</p>
     </details>
 
     <details>
-      <summary>Why cycle fast?</summary>
-      <p>The images keep your thinking mind busy so it stays out of the way. Bengston compared the conscious mind to a guard dog: throw it a steak to keep it busy while the real work happens.</p>
+      <summary>Why go so fast?</summary>
+      <p>Speed gives your busy, thinking mind a job, so it stays out of the way. Bengston compared it to a guard dog. Give the dog something to chew on, and it leaves you alone.</p>
       <ul>
-        <li><b>A selfish list:</b> the images are things you want, not things for someone else. Feeding the ego what it secretly wants keeps it content and quiet.</li>
-        <li><b>Speed:</b> going fast means you can’t dwell on, judge or hope about any one image. That’s why you let go of the feelings as you speed up.</li>
-        <li><b>No focus on the outcome:</b> trying to will a result is exactly the interference the method avoids. Stay detached, even a little bored.</li>
+        <li><b>Goals for you.</b> The list is about what you want, not what you want for other people. Giving that part of you what it wants keeps it quiet.</li>
+        <li><b>Speed.</b> Going fast leaves no time to judge, hope, or linger on any one picture.</li>
+        <li><b>Let go of results.</b> Pushing hard for an outcome is the kind of effort this practice avoids. Stay relaxed. A little bored is fine.</li>
       </ul>
     </details>
   </section>
 
   <footer class="disclaimer">
-    <h2>Disclaimer</h2>
-    <p>This is a personal, unofficial project. It isn’t affiliated with or endorsed by William Bengston, Bengston Research or L&nbsp;&amp;&nbsp;B Consulting, Inc. “Image Cycling” and “The Bengston Energy Healing Method” are registered trademarks of L&nbsp;&amp;&nbsp;B Consulting, Inc.</p>
-    <p>This app is not medical advice and doesn’t diagnose, treat or cure anything. If you have a health concern, see a doctor.</p>
-    <p><b>Flashing:</b> the app flashes images rapidly. If you have epilepsy or photosensitivity, use slow speeds and stop if you feel unwell.</p>
-    <p>Provided free, as is, without warranty. You use it at your own risk. Your images and list stay on your device and are never uploaded.</p>
-    <p>The first time the app is opened on a device, it sends one anonymous signal, so we can see roughly how many people it reaches. No account, no cookies, and never anything you write. (It uses GoatCounter, and keeps a small marker on your device so it only does this once.)</p>
+    <h2>Please read</h2>
+    <p>This is a personal, unofficial app. William Bengston, Bengston Research, and L&nbsp;&amp;&nbsp;B Consulting, Inc. did not make it and do not endorse it. “Image Cycling” and “The Bengston Energy Healing Method” are registered trademarks of L&nbsp;&amp;&nbsp;B Consulting, Inc.</p>
+    <p>Nothing here is medical advice. This app does not diagnose, treat, or cure anything. For health concerns, talk to a doctor.</p>
+    <p><b>Flashing:</b> this app flashes pictures quickly. If you have epilepsy or are sensitive to light, keep speeds slow and stop if you feel unwell.</p>
+    <p>This app comes as is, with no warranty. Use it at your own risk. Your pictures and goals stay on your device. They are never uploaded.</p>
+    <p>Built from <a href="https://github.com/kostas564/flipbook-mind" target="_blank" rel="noopener">Flipbook Mind</a>, an open-source app shared under the MIT License.</p>
   </footer>
 </div>
 
@@ -577,17 +626,21 @@
   <div id="paused">
     Paused
     <div class="row">
-      <button id="resumeBtn" class="primary">▶ Resume</button>
-      <button id="endBtn">End session</button>
+      <button id="resumeBtn" class="primary">▶ Keep going</button>
+      <button id="endBtn">Stop here</button>
     </div>
   </div>
   <div id="bar"></div>
   <div id="done">
-    <h2 id="doneTitle">Session complete ✨</h2>
+    <h2 id="doneTitle">All done ✨</h2>
     <p id="doneMsg"></p>
+    <div id="noteBox" class="notebox" hidden>
+      <label for="noteIn">What came up? <span>(optional)</span></label>
+      <textarea id="noteIn" rows="3" maxlength="500" placeholder="A thought, a feeling, anything you noticed."></textarea>
+    </div>
     <div class="row" style="justify-content:center;margin-top:16px">
-      <button id="nextLevel" class="big" hidden>Next level →</button>
-      <button id="closeDone" class="primary big">Done</button>
+      <button id="nextLevel" class="big" hidden>Go to the next level →</button>
+      <button id="closeDone" class="primary big">Close</button>
     </div>
   </div>
   <div id="quiz">
@@ -601,23 +654,37 @@
 
 <dialog id="editDlg" aria-labelledby="edTitle">
   <form method="dialog">
-    <h2 id="edTitle">Edit item</h2>
+    <h2 id="edTitle">Edit goal</h2>
     <div class="edprev" id="edPrev"></div>
     <label class="field">
       <span id="edLbl">Caption</span>
       <input id="edText" type="text" maxlength="60" autocomplete="off">
     </label>
     <div class="row edmove">
-      <button type="button" id="edUp" class="small">← Earlier</button>
+      <button type="button" id="edUp" class="small">← Move up</button>
       <span id="edPos"></span>
-      <button type="button" id="edDown" class="small">Later →</button>
+      <button type="button" id="edDown" class="small">Move down →</button>
     </div>
     <div class="row">
-      <label class="btn small" for="edFile" id="edFileLbl">Replace image</label>
+      <label class="btn small" for="edFile" id="edFileLbl">Swap picture</label>
       <input id="edFile" type="file" accept="image/*">
-      <button type="button" id="edDel" class="small danger">Remove</button>
+      <button type="button" id="edDel" class="small danger">Delete</button>
     </div>
-    <div class="row end"><button value="done" class="primary">Done</button></div>
+    <div class="row end"><button value="done" class="primary">Close</button></div>
+  </form>
+</dialog>
+
+<dialog id="nameDlg" aria-labelledby="nameTitle">
+  <form method="dialog">
+    <h2 id="nameTitle"></h2>
+    <label class="field">
+      <span>Name</span>
+      <input id="nameIn" type="text" maxlength="40" autocomplete="off" placeholder="For example, Business goals">
+    </label>
+    <div class="row end">
+      <button type="button" id="nameCancel">Cancel</button>
+      <button value="ok" class="primary">Save</button>
+    </div>
   </form>
 </dialog>
 
@@ -630,9 +697,9 @@
 </dialog>
 
 <dialog id="warnDlg" aria-labelledby="warnTitle" aria-describedby="warnMsg">
-  <h2 id="warnTitle">⚠️ Flashing images</h2>
-  <p id="warnMsg">This app displays rapidly changing images. If you have epilepsy or are sensitive to flashing lights, use slow speeds or don’t use the app. Stop immediately if you feel unwell.</p>
-  <div class="row end"><button id="ackBtn" class="primary">I understand</button></div>
+  <h2 id="warnTitle">⚠️ Flashing pictures</h2>
+  <p id="warnMsg">This app shows pictures that change quickly. If you have epilepsy or flashing light affects you, keep speeds slow or skip the app. Stop right away if you feel unwell.</p>
+  <div class="row end"><button id="ackBtn" class="primary">Got it</button></div>
 </dialog>
 
 <dialog id="helpDlg" aria-labelledby="helpTitle">
@@ -652,12 +719,13 @@
   const $ = id => document.getElementById(id);
   // Plain text-card colours: dark backgrounds and light text only, no reds, in keeping with the
   // flashing-safety rules (a bright or red background would flash harder).
-  const CARD_BG = { black: ['Black', '#000000'], charcoal: ['Charcoal', '#1f1f23'], navy: ['Navy', '#0b1f3a'], forest: ['Forest green', '#0f2e1d'], plum: ['Plum', '#2a1238'] };
-  const CARD_FG = { white: ['White', '#ffffff'], cream: ['Cream', '#f6ecd2'], sky: ['Sky blue', '#9fd3ff'], mint: ['Mint', '#9df0c6'], lavender: ['Lavender', '#cdb8ff'], gold: ['Gold', '#ffd166'] };
+  const CARD_BG = { slate: ['Slate', '#2C414D'], deepslate: ['Deep slate', '#1F2F38'], darkolive: ['Dark olive', '#3E4510'], cocoa: ['Cocoa', '#3A3328'], black: ['Black', '#000000'], charcoal: ['Charcoal', '#1f1f23'], navy: ['Navy', '#0b1f3a'], forest: ['Forest green', '#0f2e1d'], plum: ['Plum', '#2a1238'] };
+  const CARD_FG = { cream: ['Cream', '#F5F4EE'], chartreuse: ['Chartreuse', '#E9F056'], aqua: ['Aqua', '#DDEFF0'], sand: ['Sand', '#E8DDC8'], white: ['White', '#ffffff'], sky: ['Sky blue', '#9fd3ff'], mint: ['Mint', '#9df0c6'], lavender: ['Lavender', '#cdb8ff'], gold: ['Gold', '#ffd166'] };
+  // "Brand mix" text cards: dark, cozy pairs built from the brand palette, so cream text stays readable
+  // and nothing bright flashes.
   const GRADIENTS = [
-    ['#6d4aff','#c86bff'], ['#0891b2','#67e8f9'], ['#12b886','#38d9a9'],
-    ['#228be6','#66d9e8'], ['#9333ea','#e9a8f5'], ['#f59f00','#ffd43b'],
-    ['#7048e8','#339af0'], ['#0ca678','#94d82d']
+    ['#2C414D','#1F2F38'], ['#3E4510','#6B7114'], ['#1F2F38','#3C5866'], ['#3A3328','#5C5040'],
+    ['#23403F','#35605E'], ['#2C414D','#4E5B2A'], ['#33302A','#4F5A12'], ['#1F2F38','#2E4A44']
   ];
   // WCAG 2.3.1: no more than three flashes in any one second. Faster speeds need an explicit opt-in,
   // and the device's Reduce Motion setting caps everything at one image per second.
@@ -712,13 +780,13 @@
         tx.oncomplete = () => resolve(true);
         tx.onabort = () => {
           const full = tx.error && tx.error.name === 'QuotaExceededError';
-          toast(full ? 'Couldn’t save: your device storage is full.' : 'Couldn’t save that change. Please try again.');
+          toast(full ? 'Not saved. This device is out of storage.' : 'That change didn’t save. Please try again.');
           resolve(false);
         };
       } catch { resolve(false); }
     });
   }
-  const metaOf = it => ({ id: it.id, order: it.order, text: it.text, color: it.color });
+  const metaOf = it => ({ id: it.id, order: it.order, text: it.text, color: it.color, list: it.list || 'main' });
   // Order, caption, colour only. Never touches images.
   const saveMeta = (...its) => dbWrite(['meta'], tx => its.forEach(it => tx.objectStore('meta').put(metaOf(it))));
   // New items, or an item whose image was just replaced with a freshly picked file.
@@ -742,7 +810,7 @@
   let items = [];
   const urls = new Map();
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const DEFAULTS = { speed: reduceMotion ? 1000 : 500, dur: 3, shuffle: false, xfade: true, cards: 'colourful', cardBg: 'black', cardFg: 'white', caps: false, chime: true, fs: false, fast: false, pace: 1000, tdur: 2, vol: 50, mode: 'cycle' };
+  const DEFAULTS = { speed: reduceMotion ? 1000 : 500, dur: 3, shuffle: false, xfade: true, cards: 'colourful', cardBg: 'slate', cardFg: 'cream', caps: false, chime: true, fs: false, fast: false, pace: 1000, tdur: 2, vol: 50, mode: 'cycle' };
   const settings = Object.assign({}, DEFAULTS, ls.get('ic-settings', {}));
   // Shuffle used to be on by default and every install saved that. Images now play in list order
   // unless shuffle is chosen, so switch it off once for existing installs.
@@ -760,11 +828,33 @@
   // Settings can come from a backup file, so only known palette names are ever used.
   function sanitizeCards() {
     if (settings.cards !== 'plain') settings.cards = 'colourful';
-    if (!Object.hasOwn(CARD_BG, settings.cardBg)) settings.cardBg = 'black';
-    if (!Object.hasOwn(CARD_FG, settings.cardFg)) settings.cardFg = 'white';
+    if (!Object.hasOwn(CARD_BG, settings.cardBg)) settings.cardBg = 'slate';
+    if (!Object.hasOwn(CARD_FG, settings.cardFg)) settings.cardFg = 'cream';
   }
   sanitizeCards();
   const stats = Object.assign({ total: 0, streak: 0, last: null }, ls.get('ic-stats', {}));
+
+  // ---------- Lists ----------
+  // Every item belongs to one list. Items saved before lists existed belong to 'main'.
+  const cleanLists = v => (Array.isArray(v) ? v : [])
+    .filter(l => l && typeof l.id === 'string' && typeof l.name === 'string')
+    .map(l => ({ id: l.id.slice(0, 40), name: l.name.slice(0, 40) }));
+  let lists = cleanLists(ls.get('ic-lists', null));
+  if (!lists.length) lists = [{ id: 'main', name: 'My list' }];
+  let listId = ls.get('ic-list', lists[0].id);
+  if (!lists.some(l => l.id === listId)) listId = lists[0].id;
+  let otherCount = 0; // items in the lists that aren't showing
+  const saveLists = () => { ls.set('ic-lists', lists); ls.set('ic-list', listId); };
+  const listName = id => (lists.find(l => l.id === id) || { name: '' }).name;
+  const inList = (it, id = listId) => (it.list || 'main') === id;
+  const anyItems = () => items.length > 0 || otherCount > 0;
+
+  // ---------- Session notes ----------
+  const cleanNotes = v => (Array.isArray(v) ? v : [])
+    .filter(n => n && Number.isFinite(n.t) && typeof n.text === 'string' && n.text.trim())
+    .map(n => ({ t: n.t, text: n.text.slice(0, 500), kind: String(n.kind || '').slice(0, 60), list: String(n.list || '').slice(0, 40) }));
+  let notes = cleanNotes(ls.get('ic-notes', []));
+  let noteCtx = null, notesAll = false;
   let trained = ls.get('ic-trained', {});
 
   const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 7);
@@ -845,15 +935,15 @@
       tile.dataset.id = it.id;
       tile.tabIndex = 0;
       tile.setAttribute('role', 'button');
-      tile.setAttribute('aria-label', `Item ${i + 1}${it.text ? ': ' + it.text : ''}. Edit`);
+      tile.setAttribute('aria-label', `Goal ${i + 1}${it.text ? ': ' + it.text : ''}. Open to edit`);
       tile.onclick = e => { if (!e.target.closest('button')) openEditor(it.id); };
       tile.onkeydown = e => { if (e.target === tile && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); openEditor(it.id); } };
       const num = document.createElement('span');
       num.className = 'num'; num.textContent = i + 1;
       const grip = document.createElement('button');
       grip.className = 'grip'; grip.textContent = '⠿';
-      grip.title = 'Drag to reorder';
-      grip.setAttribute('aria-label', `Move item ${i + 1}. Use arrow keys to move`);
+      grip.title = 'Drag to move';
+      grip.setAttribute('aria-label', `Move goal ${i + 1} with the arrow keys`);
       grip.onpointerdown = e => startDrag(e, tile);
       grip.onkeydown = e => {
         const d = { ArrowLeft: -1, ArrowUp: -1, ArrowRight: 1, ArrowDown: 1 }[e.key];
@@ -862,8 +952,8 @@
         if (move(it.id, d)) grid.querySelector(`[data-id="${it.id}"] .grip`).focus();
       };
       const del = document.createElement('button');
-      del.className = 'del'; del.textContent = '✕'; del.title = 'Remove';
-      del.setAttribute('aria-label', `Remove item ${i + 1}`);
+      del.className = 'del'; del.textContent = '✕'; del.title = 'Delete';
+      del.setAttribute('aria-label', `Delete goal ${i + 1}`);
       del.onclick = () => removeItem(it.id);
       tile.append(num, grip, del);
       return tile;
@@ -871,11 +961,12 @@
     $('empty').style.display = items.length ? 'none' : 'block';
     const n = items.length, c = $('count');
     c.textContent = n === 0 ? '' : n >= 20
-      ? `${n} items. Your list is ready.`
-      : `${n} item${n === 1 ? '' : 's'}. Add ${20 - n} more to reach the recommended 20.`;
+      ? `${n} goals. You’re all set.`
+      : `${n} goal${n === 1 ? '' : 's'} so far. ${20 - n} more gets you to 20.`;
     c.classList.toggle('ok', n >= 20);
     $('startBtn').disabled = n < 2;
-    $('exportBtn').hidden = n === 0;
+    $('exportBtn').hidden = !anyItems();
+    $('listDel').disabled = lists.length < 2;
     $('cardCtl').hidden = !items.some(it => !it.blob); // only when there are text items to colour
     renderLevels();
     renderStoreTip();
@@ -927,7 +1018,7 @@
     // Keep the image in storage until the undo window closes, so undo never has to re-save it.
     markDeleted(id); reorder(); render();
     setTimeout(() => { if (!items.includes(it)) { dropUrl(id); dbDel(id); } }, 7000);
-    toast('Item removed.', { label: 'Undo', fn: () => {
+    toast('Goal deleted.', { label: 'Undo', fn: () => {
       items.splice(Math.min(i, items.length), 0, it);
       reorder(); render();
     } });
@@ -945,7 +1036,7 @@
     } catch { return file; }
   }
   function newItem(fields) {
-    return Object.assign({ id: uid(), created: Date.now(), order: items.length, color: items.length }, fields);
+    return Object.assign({ id: uid(), created: Date.now(), order: items.length, color: items.length, list: listId }, fields);
   }
   $('fileIn').onchange = async e => {
     const added = [];
@@ -984,9 +1075,9 @@
     const i = items.findIndex(x => x.id === editing), it = items[i];
     if (!it) return $('editDlg').close();
     $('edPrev').replaceChildren(tileFor(it));
-    $('edTitle').textContent = `Item ${i + 1}`;
-    $('edLbl').textContent = it.blob ? 'Caption (optional)' : 'Text';
-    $('edFileLbl').textContent = it.blob ? 'Replace image' : 'Add an image';
+    $('edTitle').textContent = `Goal ${i + 1}`;
+    $('edLbl').textContent = it.blob ? 'Caption, if you want one' : 'Words';
+    $('edFileLbl').textContent = it.blob ? 'Swap picture' : 'Add a picture';
     $('edPos').textContent = `${i + 1} of ${items.length}`;
     $('edUp').disabled = i === 0;
     $('edDown').disabled = i === items.length - 1;
@@ -1029,12 +1120,17 @@
     $('helpDlg').showModal();
   }
   $('helpCancel').onclick = () => $('helpDlg').close();
-  const backupName = () => `flipbook-mind-backup-${dayStr(0)}.json`;
+  const backupName = () => `mind-reel-backup-${dayStr(0)}.json`;
+  const packItems = its => Promise.all(its.map(async it => ({
+    text: it.text || '', color: it.color, image: it.blob ? await blobToDataURL(it.blob) : null
+  })));
   async function buildBackup() {
+    const all = await dbAll(), byOrder = (a, b) => (a.order ?? Infinity) - (b.order ?? Infinity) || a.created - b.created;
     const data = {
-      app: 'flipbook-mind', version: 1, exported: new Date().toISOString(), settings, stats, trained,
-      items: await Promise.all(items.map(async it => ({
-        text: it.text || '', color: it.color, image: it.blob ? await blobToDataURL(it.blob) : null
+      app: 'flipbook-mind', version: 2, exported: new Date().toISOString(), settings, stats, trained, notes,
+      items: await packItems(items), // the showing list, so older copies of the app can still restore it
+      lists: await Promise.all(lists.map(async l => ({
+        name: l.name, current: l.id === listId, items: await packItems(all.filter(it => inList(it, l.id)).sort(byOrder))
       })))
     };
     return new File([JSON.stringify(data)], backupName(), { type: 'application/json' });
@@ -1049,18 +1145,18 @@
   function backupDone() {
     $('helpDlg').close();
     ls.set('ic-backup', Date.now()); renderStoreTip();
-    toast('Backup saved. Keep the file somewhere safe.');
+    toast('Backup saved. Put the file somewhere you won’t lose it.');
   }
   $('exportBtn').onclick = async () => {
     const name = `<b>${backupName()}</b>`;
     const steps = {
-      ios: ['Tap <b>Save backup</b>.', 'In the menu that opens, choose <b>Save to Files</b>.', 'Pick a folder, such as iCloud Drive or On My iPhone, and tap <b>Save</b>.'],
-      android: ['Tap <b>Save backup</b>.', `The file ${name} is saved to your <b>Downloads</b> folder.`, 'For extra safety, copy it to Google Drive or another safe place.'],
-      desktop: ['Click <b>Save backup</b>.', `The file ${name} is saved to your <b>Downloads</b> folder (your browser may ask where to save it).`, 'For extra safety, copy it to cloud storage or a USB stick.']
+      ios: ['Tap <b>Save backup</b>.', 'When the share menu opens, pick <b>Save to Files</b>.', 'Choose a spot, like iCloud Drive, then tap <b>Save</b>.'],
+      android: ['Tap <b>Save backup</b>.', `Your phone puts ${name} in your <b>Downloads</b> folder.`, 'Copy it to Google Drive or somewhere else safe, just in case.'],
+      desktop: ['Click <b>Save backup</b>.', `Your browser puts ${name} in <b>Downloads</b>, or asks where to put it.`, 'Copy it to cloud storage or a USB drive, just in case.']
     }[platform()];
     let backupFile = null;
-    guide('Back up your list', steps,
-      'The file contains your images, so keep it private. To bring your list back later, tap Restore and choose this file.',
+    guide('Save a backup', steps,
+      'Your pictures are inside this file, so keep it private. To get everything back later, use Load backup and pick this file.',
       'Save backup', async () => {
         const file = backupFile;
         if (!file) return;
@@ -1071,19 +1167,19 @@
         backupDone();
       });
     // Prepare the file while the instructions are read, so saving happens straight from the tap.
-    $('helpOk').disabled = true; $('helpOk').textContent = 'Preparing…';
+    $('helpOk').disabled = true; $('helpOk').textContent = 'Getting it ready…';
     backupFile = await buildBackup();
     $('helpOk').disabled = false; $('helpOk').textContent = 'Save backup';
   };
   $('restoreBtn').onclick = () => {
-    const find = 'It’s named <b>flipbook-mind-backup-</b> followed by a date.';
+    const find = 'Look for a name that starts with <b>mind-reel-backup-</b> and ends with a date.';
     const steps = {
-      ios: ['Tap <b>Choose file</b>, then <b>Browse</b> if you see it.', `Find your backup file, for example in Downloads or iCloud Drive. ${find}`, 'Tap the file to restore it.'],
-      android: ['Tap <b>Choose file</b>.', `Find your backup file, usually in <b>Downloads</b>. ${find}`, 'Tap the file to restore it.'],
-      desktop: ['Click <b>Choose file</b>.', `Find your backup file, usually in <b>Downloads</b>. ${find}`, 'Select it and click <b>Open</b>.']
+      ios: ['Tap <b>Choose file</b>. If you see <b>Browse</b>, tap that too.', `Find the backup, maybe in Downloads or iCloud Drive. ${find}`, 'Tap the file.'],
+      android: ['Tap <b>Choose file</b>.', `Find the backup, most likely in <b>Downloads</b>. ${find}`, 'Tap the file.'],
+      desktop: ['Click <b>Choose file</b>.', `Find the backup, most likely in <b>Downloads</b>. ${find}`, 'Pick it and click <b>Open</b>.']
     }[platform()];
-    guide('Restore a backup', steps,
-      items.length ? 'You already have items, so you’ll be asked whether to replace your list or add the backup’s items to it.' : 'Your list, settings and progress will come back as they were when you saved the backup.',
+    guide('Load a backup', steps,
+      anyItems() ? 'You already have goals here. Next, you’ll choose whether the backup replaces them or adds to them.' : 'Your goals, settings, and progress will return just as they were when you saved the backup.',
       'Choose file', () => { $('helpDlg').close(); $('importIn').click(); });
   };
   $('importIn').onchange = async e => {
@@ -1094,16 +1190,20 @@
       data = JSON.parse(await f.text());
       // Backups made before the rename say 'image-cycling'.
       if (!['flipbook-mind', 'image-cycling'].includes(data.app) || !Array.isArray(data.items)) throw 0;
-    } catch { return toast('That file isn’t a Flipbook Mind backup.'); }
+    } catch { return toast('That file isn’t a backup from this app.'); }
+    const multi = Array.isArray(data.lists) && data.lists.some(l => l && Array.isArray(l.items));
+    const all = await dbAll();
     let mode = 'replace';
-    if (items.length) {
-      mode = await ask('Restore backup',
-        `This backup has ${data.items.length} item${data.items.length === 1 ? '' : 's'}. Replace your current list, or add them to the end of it?`,
-        [['', 'Cancel'], ['add', 'Add to list'], ['replace', 'Replace list', true]]);
+    if (multi ? all.length : items.length) {
+      const n = multi ? data.lists.length : data.items.length;
+      mode = await ask('Load backup', multi
+        ? `This backup has ${n} list${n === 1 ? '' : 's'}. Replace everything on this device, or add its lists next to yours?`
+        : `This backup has ${n} item${n === 1 ? '' : 's'}. Replace your current list, or add them to the end of it?`,
+        [['', 'Cancel'], ['add', multi ? 'Add lists' : 'Add to list'], ['replace', multi ? 'Replace everything' : 'Replace list', true]]);
       if (!mode) return;
     }
     if (mode === 'replace') {
-      await dbDel(...items.map(x => x.id));
+      await dbDel(...(multi ? all : items).map(x => x.id));
       for (const id of [...urls.keys()]) dropUrl(id);
       items = [];
       for (const k of Object.keys(DEFAULTS)) {
@@ -1126,20 +1226,44 @@
       if (Number.isFinite(tr.quiz)) trained.quiz = Math.max(0, Math.min(10, Math.floor(tr.quiz)));
       ls.set('ic-trained', trained);
       bindSettings(); setMode(settings.mode);
+      if (multi) lists = [];
     }
-    const added = [];
-    for (const x of data.items) {
-      const it = newItem({});
-      if (typeof x.color === 'number') it.color = x.color;
-      if (x.text) it.text = String(x.text).slice(0, 60);
-      if (typeof x.image === 'string' && x.image.startsWith('data:image/')) {
-        try { it.blob = await (await fetch(x.image)).blob(); } catch {}
+    if (Array.isArray(data.notes)) {
+      const got = cleanNotes(data.notes);
+      notes = mode === 'replace' ? got : notes.concat(got.filter(g => !notes.some(n => n.t === g.t)));
+      notes.sort((a, b) => b.t - a.t); ls.set('ic-notes', notes);
+    }
+    const groups = multi ? data.lists.filter(l => l && Array.isArray(l.items)) : [{ items: data.items }];
+    let count = 0, firstNew = null, currentNew = null;
+    for (const g of groups) {
+      let target = listId, order = multi ? 0 : items.length;
+      if (multi) {
+        let name = String(g.name || 'Restored list').slice(0, 40);
+        if (lists.some(l => l.name === name)) name = (name.slice(0, 29) + ' (restored)');
+        target = uid(); lists.push({ id: target, name });
+        firstNew = firstNew || target;
+        if (g.current) currentNew = target;
       }
-      if (!it.blob && !it.text) continue;
-      items.push(it); added.push(it);
+      const recs = [];
+      for (const x of g.items) {
+        const it = newItem({ list: target, order: order, color: order });
+        if (x && typeof x.color === 'number') it.color = x.color;
+        if (x && x.text) it.text = String(x.text).slice(0, 60);
+        if (x && typeof x.image === 'string' && x.image.startsWith('data:image/')) {
+          try { it.blob = await (await fetch(x.image)).blob(); } catch {}
+        }
+        if (!it.blob && !it.text) continue;
+        recs.push(it); order++;
+      }
+      await saveNew(...recs); count += recs.length;
     }
-    await saveNew(...added); render(); keepStorage();
-    toast(`Restored ${added.length} item${added.length === 1 ? '' : 's'}.`);
+    if (multi) {
+      if (!lists.length) lists = [{ id: 'main', name: 'My list' }];
+      if (mode === 'replace' || !lists.some(l => l.id === listId)) listId = currentNew || firstNew || lists[0].id;
+      saveLists();
+    }
+    await loadItems(); render(); renderLists(); renderNotes(); keepStorage();
+    toast(`Brought back ${count} goal${count === 1 ? '' : 's'}${multi ? ` in ${groups.length} list${groups.length === 1 ? '' : 's'}` : ''}.`);
   };
   const standalone = () => matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
   let persisted = false;
@@ -1148,13 +1272,30 @@
     try { if (!persisted && navigator.storage && navigator.storage.persist) persisted = await navigator.storage.persist(); } catch {}
     renderStoreTip();
   }
+  // A reminder to back up: 7 days after the last backup, or a day after the first item if there's never been one.
+  function renderNag() {
+    const now = Date.now(), last = ls.get('ic-backup', 0);
+    if (anyItems() && !ls.get('ic-since', 0)) ls.set('ic-since', now);
+    const since = ls.get('ic-since', 0), snooze = ls.get('ic-nag-snooze', 0);
+    const due = last ? now - last > 7 * 864e5 : since && now - since > 864e5;
+    const show = anyItems() && due && now > snooze;
+    $('backupNag').hidden = !show;
+    if (!show) return false;
+    const days = Math.floor((now - last) / 864e5);
+    $('nagMsg').innerHTML = (last ? `It’s been <b>${days} days</b> since your last backup.` : 'You haven’t saved a backup yet.')
+      + ' Your goals live on this device only. A backup file keeps them safe if something goes wrong.';
+    return true;
+  }
+  $('nagLater').onclick = () => { ls.set('ic-nag-snooze', Date.now() + 864e5); renderNag(); renderStoreTip(); };
+  $('nagBackup').onclick = () => $('exportBtn').click();
   function renderStoreTip() {
     const tip = $('storeTip'), last = ls.get('ic-backup', 0);
     const recent = last && Date.now() - last < 30 * 864e5;
-    tip.hidden = !items.length || recent || (persisted && standalone());
+    const nag = renderNag();
+    tip.hidden = nag || !items.length || recent || (persisted && standalone());
     tip.textContent = standalone() || persisted
-      ? 'Your list is stored only on this device. Back it up now and then so you never lose it.'
-      : 'Your list is stored only in this browser, which may clear it if space runs low or, on iPhone, after a week without use. Back it up, or add this app to your home screen to keep it safe.';
+      ? 'Your goals are saved on this device only. Save a backup from time to time.'
+      : 'Your goals are saved in this browser only. The browser can erase them when storage runs low, and iPhone can erase them after a week of no use. Save a backup, or add the app to your home screen.';
   }
   // Chrome, Edge and Android offer a one-tap install prompt. Safari (iPhone, iPad, Mac) doesn't,
   // so there the button explains how to add the app by hand.
@@ -1174,13 +1315,103 @@
       } catch {}
     }
     const steps = isIOS
-      ? 'Tap the Share button (the square with an arrow pointing up), then scroll down and choose “Add to Home Screen”. In Safari it’s at the bottom of the screen; in Chrome it’s next to the address bar.'
+      ? 'Tap the Share button. It looks like a square with an arrow pointing up. Scroll down and pick “Add to Home Screen.” In Safari the button is at the bottom. In Chrome it’s beside the address bar.'
       : isMacSafari
-        ? 'In the menu bar, choose File → Add to Dock.'
-        : 'Open your browser’s menu (⋮ or ⋯) and choose “Install app” or “Add to Home screen”. If you don’t see either, your browser can’t install apps; Chrome, Edge and Safari can.';
-    ask('Install the app', steps, [['', 'OK', true]]);
+        ? 'From the menu bar, pick File, then Add to Dock.'
+        : 'Open your browser’s menu (⋮ or ⋯) and look for “Install app” or “Add to Home screen.” If neither is there, try Chrome, Edge, or Safari.';
+    ask('Put the app on your device', steps, [['', 'Got it', true]]);
   };
   addEventListener('appinstalled', () => { $('installBtn').hidden = true; keepStorage(); });
+
+  // ---------- Lists UI ----------
+  const byOrder = (a, b) => (a.order ?? Infinity) - (b.order ?? Infinity) || a.created - b.created;
+  async function loadItems() {
+    for (const id of [...urls.keys()]) dropUrl(id);
+    const all = await dbAll();
+    items = all.filter(it => inList(it)).sort(byOrder);
+    otherCount = all.length - items.length;
+    if (items.some((it, i) => it.order !== i)) reorder();
+  }
+  function renderLists() {
+    $('listSel').replaceChildren(...lists.map(l => {
+      const o = document.createElement('option');
+      o.value = l.id; o.textContent = l.name; o.selected = l.id === listId;
+      return o;
+    }));
+    $('listDel').disabled = lists.length < 2;
+  }
+  function askName(title, value) {
+    const d = $('nameDlg');
+    $('nameTitle').textContent = title;
+    $('nameIn').value = value || '';
+    d.returnValue = '';
+    d.showModal();
+    return new Promise(r => d.addEventListener('close', () => r(d.returnValue === 'ok' ? $('nameIn').value.trim().slice(0, 40) : ''), { once: true }));
+  }
+  $('nameCancel').onclick = () => $('nameDlg').close('');
+  async function switchList(id) {
+    $('toast').classList.remove('on'); // an Undo from the old list can't apply here
+    listId = id; saveLists();
+    await loadItems(); render(); renderLists();
+  }
+  $('listSel').onchange = e => switchList(e.target.value);
+  $('listNew').onclick = async () => {
+    const name = await askName('New list', '');
+    if (!name) return;
+    const id = uid();
+    lists.push({ id, name });
+    switchList(id);
+  };
+  $('listRen').onclick = async () => {
+    const l = lists.find(x => x.id === listId);
+    const name = await askName('Rename list', l.name);
+    if (!name || name === l.name) return;
+    l.name = name; saveLists(); renderLists();
+  };
+  $('listDel').onclick = async () => {
+    if (lists.length < 2) return;
+    const n = items.length;
+    const ok = await ask('Delete this list?',
+      `“${listName(listId)}”${n ? ` and its ${n} goal${n === 1 ? '' : 's'}` : ''} will be removed from this device. If you might want it later, save a backup first.`,
+      [['', 'Cancel'], ['yes', 'Delete list', true]]);
+    if (ok !== 'yes') return;
+    await dbDel(...items.map(x => x.id));
+    lists = lists.filter(l => l.id !== listId);
+    switchList(lists[0].id);
+    toast('List deleted.');
+  };
+
+  // ---------- Notes UI ----------
+  function saveNote() {
+    if (!noteCtx) return;
+    const text = $('noteIn').value.trim();
+    if (text) { notes.unshift(Object.assign({ t: Date.now(), text }, noteCtx)); ls.set('ic-notes', notes); renderNotes(); }
+    noteCtx = null; $('noteIn').value = '';
+  }
+  function renderNotes() {
+    $('notesCard').hidden = !notes.length;
+    const shown = notesAll ? notes : notes.slice(0, 5);
+    const fmt = t => new Date(t).toLocaleDateString(undefined, { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' });
+    $('notesList').replaceChildren(...shown.map(n => {
+      const li = document.createElement('li');
+      const meta = document.createElement('div'); meta.className = 'nmeta';
+      meta.textContent = [fmt(n.t), n.kind, n.list].filter(Boolean).join(' · ');
+      const p = document.createElement('p'); p.textContent = n.text;
+      const del = document.createElement('button');
+      del.className = 'small'; del.textContent = 'Delete'; del.setAttribute('aria-label', `Delete note from ${fmt(n.t)}`);
+      del.onclick = () => {
+        const i = notes.indexOf(n);
+        if (i < 0) return;
+        notes.splice(i, 1); ls.set('ic-notes', notes); renderNotes();
+        toast('Note deleted.', { label: 'Undo', fn: () => { notes.splice(i, 0, n); ls.set('ic-notes', notes); renderNotes(); } });
+      };
+      li.append(meta, del, p);
+      return li;
+    }));
+    $('notesMore').hidden = notes.length <= 5;
+    $('notesMore').textContent = notesAll ? 'Show fewer' : `Show all ${notes.length}`;
+  }
+  $('notesMore').onclick = () => { notesAll = !notesAll; renderNotes(); };
 
   // ---------- Settings UI ----------
   const rateOf = ms => Math.round(1000 / ms * 4) / 4;
@@ -1189,18 +1420,18 @@
     const L = limits();
     const upd = () => {
       ls.set('ic-settings', settings);
-      $('speedOut').textContent = `${rateOf(settings.speed)} image${rateOf(settings.speed) === 1 ? '' : 's'}/sec`;
+      $('speedOut').textContent = `${rateOf(settings.speed)} per second`;
       $('durOut').textContent = `${settings.dur} min`;
-      $('paceOut').textContent = `${(settings.pace / 1000).toFixed(2)} s per image`;
+      $('paceOut').textContent = `${(settings.pace / 1000).toFixed(2)} sec each`;
       $('tdurOut').textContent = `${settings.tdur} min`;
       $('volOut').textContent = settings.vol ? `${settings.vol}%` : 'Off';
       const fast = rateOf(settings.speed) > SAFE_RATE;
       $('speedWarn').classList.toggle('hot', fast || reduceMotion);
       $('speedWarn').textContent = reduceMotion
-        ? 'Your device’s Reduce Motion setting is on, so speed is limited to 1 image per second.'
+        ? 'Reduce Motion is turned on for this device, so the top speed is 1 picture per second.'
         : fast
-          ? '⚠️ Faster than 3 images per second. This level of flashing can trigger seizures in people with photosensitive epilepsy.'
-          : '⚠️ Cycling creates flashing. If you are sensitive to flashing lights, use a slow speed.';
+          ? '⚠️ This is faster than 3 pictures per second. Flashing this fast can cause seizures in people with photosensitive epilepsy.'
+          : '⚠️ Cycling means flashing pictures. If flashing light bothers you, keep the speed low.';
     };
     $('speed').max = L.rate;
     $('speed').value = rateOf(settings.speed);
@@ -1231,9 +1462,9 @@
     $('fast').onchange = async e => {
       if (e.target.checked) {
         e.target.checked = false;
-        const ok = await ask('Allow fast speeds?',
-          'This unlocks speeds of up to 10 images per second. Speeds above 3 per second flash faster than the level considered safe for people with photosensitive epilepsy, and can trigger seizures. Only turn this on if flashing lights don’t affect you, and stop immediately if you feel unwell.',
-          [['', 'Cancel'], ['yes', 'I understand, allow', true]]);
+        const ok = await ask('Unlock faster speeds?',
+          'This allows up to 10 pictures per second. Anything over 3 per second flashes faster than the safe limit for people with photosensitive epilepsy, and it can cause seizures. Turn this on only if flashing light doesn’t affect you. Stop right away if you feel unwell.',
+          [['', 'Not now'], ['yes', 'Yes, unlock', true]]);
         settings.fast = ok === 'yes';
       } else settings.fast = false;
       bindSettings();
@@ -1276,28 +1507,28 @@
   // ---------- Training levels ----------
   // Each level shows fewer images, so your mind has to fill in more of the gaps.
   const LEVELS = [
-    { id: 1, name: 'Learn your list',
-      desc: 'Slowly go through your images in order, twice, to memorise them.',
-      hint: 'Look at each image and link it to its number and meaning.',
+    { id: 1, name: 'Meet your list',
+      desc: 'Go through your pictures slowly, in order, two times. This is how you memorize them.',
+      hint: 'Connect each picture with its number and what it means to you.',
       run: () => ({ interval: 1800, rounds: 2, visible: () => true, tick: false, caption: true, labels: true }) },
-    { id: 2, name: 'Fill the gaps',
-      desc: 'Every other image is blank. Picture the missing one when you hear the tick.',
-      hint: 'When the screen goes blank, picture the image that belongs there.',
+    { id: 2, name: 'Half and half',
+      desc: 'Every second picture is missing. When you hear the tick, picture the one that belongs there.',
+      hint: 'When the screen is empty, see the missing picture in your mind.',
       run: () => ({ interval: settings.pace, visible: k => k % 2 === 0, tick: true }) },
-    { id: 3, name: 'Hold the thread',
-      desc: 'Only every 4th image is shown. Keep the sequence going in your head.',
-      hint: 'Keep the list running in your mind. The images that appear help you check your place.',
+    { id: 3, name: 'Keep your place',
+      desc: 'You see only every fourth picture. Keep the order going in your head between them.',
+      hint: 'Keep the list moving in your mind. The pictures that show up let you check where you are.',
       run: () => ({ interval: settings.pace, visible: k => k % 4 === 0, tick: true }) },
-    { id: 4, name: 'Eyes closed',
-      desc: 'No images, just a soft tick. Close your eyes and picture the next image on each tick.',
-      hint: 'Close your eyes. On every tick, picture the next image in your list.',
+    { id: 4, name: 'Lights out',
+      desc: 'No pictures. Only a soft tick. Close your eyes and see the next picture each time it ticks.',
+      hint: 'Eyes closed. Each tick, see the next picture on your list.',
       run: () => ({ interval: settings.pace, visible: () => false, tick: true }) },
-    { id: 5, name: 'Speed up',
-      desc: 'Ticks only, twice as fast. Let the images blur together without dwelling.',
-      hint: 'Eyes closed. Let the images flow faster than you can think about them.',
+    { id: 5, name: 'Faster',
+      desc: 'Ticks only, at double speed. Let the pictures run together. Don’t stop on any one.',
+      hint: 'Eyes closed. Let the pictures move faster than you can think about them.',
       run: () => ({ interval: Math.max(250, settings.pace / 2), visible: () => false, tick: true }) },
-    { id: 6, name: 'On your own',
-      desc: 'No images and no ticks. Cycle at your own pace. A chime tells you when to stop.',
+    { id: 6, name: 'All you',
+      desc: 'No pictures and no ticks. Cycle at your own speed until the chime.',
       hint: '',
       run: () => ({ free: true }) }
   ];
@@ -1315,10 +1546,10 @@
       row.innerHTML = `<div class="badge">${trained[L.id] ? '✓' : L.id}</div>
         <div><h3></h3><p></p></div>`;
       row.querySelector('h3').textContent = L.name;
-      if (isNext) row.querySelector('h3').insertAdjacentHTML('beforeend', '<span class="tag">Up next</span>');
+      if (isNext) row.querySelector('h3').insertAdjacentHTML('beforeend', '<span class="tag">Next up</span>');
       row.querySelector('p').textContent = L.desc;
       const b = document.createElement('button');
-      b.textContent = trained[L.id] ? 'Practise again' : 'Start';
+      b.textContent = trained[L.id] ? 'Do it again' : 'Begin';
       if (isNext) b.classList.add('primary');
       b.disabled = n < 2;
       b.onclick = () => startTraining(L);
@@ -1329,14 +1560,14 @@
     const q = document.createElement('div');
     q.className = 'level' + (trained.quiz ? ' done' : '');
     q.innerHTML = `<div class="badge">${trained.quiz ? '✓' : '?'}</div>
-      <div><h3>Memory quiz</h3><p>Test yourself: which image comes before or after? Best score: <b>${bestQuiz()}/10</b></p></div>`;
+      <div><h3>Order check</h3><p>See how well you know the order. Which picture comes before or after? Best so far: <b>${bestQuiz()}/10</b></p></div>`;
     const qb = document.createElement('button');
-    qb.textContent = 'Take quiz'; qb.disabled = n < 4;
+    qb.textContent = 'Try it'; qb.disabled = n < 4;
     qb.onclick = startQuiz;
     q.appendChild(qb);
     box.appendChild(q);
-    $('trainNeed').textContent = n < 2 ? 'Add at least 2 items to your list to start training (4 for the quiz).'
-      : n < 4 ? 'Add at least 4 items to unlock the memory quiz.' : '';
+    $('trainNeed').textContent = n < 2 ? 'Add 2 or more goals to begin practicing. The order check needs 4.'
+      : n < 4 ? 'Add 4 or more goals to open the order check.' : '';
   }
 
   // ---------- Audio ----------
@@ -1454,8 +1685,8 @@
     if (g.roundRect) g.roundRect(0, 0, px, px, 32 * k); else g.rect(0, 0, px, px);
     g.fill();
     const size = Math.min(51.2, Math.max(24, innerWidth * 0.05)) * k, pad = 24 * k;
-    g.font = `600 ${size}px "Fraunces Variable", Fraunces, Georgia, serif`;
-    g.fillStyle = look.plain ? look.fg : '#fff'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.font = `400 ${size}px "Calistoga", Georgia, serif`;
+    g.fillStyle = look.plain ? look.fg : '#F5F4EE'; g.textAlign = 'center'; g.textBaseline = 'middle';
     const lines = wrapLines(g, it.text || "", px - pad * 2), lh = size * 1.55;
     lines.forEach((l, i) => g.fillText(l, px / 2, px / 2 + (i - (lines.length - 1) / 2) * lh));
     return c;
@@ -1464,12 +1695,12 @@
     const c = blankFrame(px), g = c.getContext('2d'), k = px / cssFrame();
     const r = px * 0.375, R = r * Math.SQRT2; // the 60vmin circle inside the 80vmin frame
     const grad = g.createRadialGradient(px / 2, px / 2, 0, px / 2, px / 2, R);
-    grad.addColorStop(0, 'rgba(139, 92, 246, 0.22)');
-    grad.addColorStop(0.45, 'rgba(236, 72, 153, 0.08)');
-    grad.addColorStop(0.7, 'rgba(236, 72, 153, 0)');
+    grad.addColorStop(0, 'rgba(221, 239, 240, 0.16)');
+    grad.addColorStop(0.45, 'rgba(233, 240, 86, 0.06)');
+    grad.addColorStop(0.7, 'rgba(233, 240, 86, 0)');
     g.fillStyle = grad; g.beginPath(); g.arc(px / 2, px / 2, r, 0, Math.PI * 2); g.fill();
     const size = 15.2 * k, gap = size * 0.35, word = 'IMAGINE';
-    g.font = `400 ${size}px "Inter Variable", Inter, sans-serif`;
+    g.font = `400 ${size}px "Poppins", sans-serif`;
     g.fillStyle = 'rgba(255, 255, 255, 0.35)'; g.textBaseline = 'middle';
     const widths = [...word].map(ch => g.measureText(ch).width);
     let x = (px - widths.reduce((a, b) => a + b, 0) - gap * (word.length - 1)) / 2;
@@ -1488,7 +1719,7 @@
   async function buildNodes() {
     nodes = new Map();
     const px = framePx();
-    try { await Promise.all([document.fonts.load('600 40px "Fraunces Variable"'), document.fonts.load('400 16px "Inter Variable"')]); } catch {}
+    try { await Promise.all([document.fonts.load('400 40px "Calistoga"'), document.fonts.load('400 16px "Poppins"')]); } catch {}
     for (const id of [...frames.keys()]) if (!items.some(it => it.id === id)) frames.delete(id);
     await Promise.all(items.map(async it => nodes.set(it.id, await frameFor(it, px))));
     if (!imagine || imagine.width !== px) imagine = imagineFrame(px);
@@ -1552,8 +1783,8 @@
       if (!this.on || !this.frames.length) return '';
       const f = this.frames, maxF = Math.max(...f), over = f.filter(x => x > 100).length;
       const l = this.late, maxL = l.length ? Math.max(...l) : 0;
-      return `Timing check: ${l.length} image changes, the latest one ${Math.round(maxL)} ms late. ` +
-        `Longest gap between screen updates ${Math.round(maxF)} ms; ${over} over 100 ms (normal is about 17 ms).`;
+      return `Timing check: ${l.length} picture changes. The latest was ${Math.round(maxL)} ms late. ` +
+        `Longest pause between screen updates: ${Math.round(maxF)} ms. ${over} were over 100 ms (about 17 ms is normal).`;
     }
   };
   {
@@ -1562,7 +1793,7 @@
       clearTimeout(tt); tt = setTimeout(() => { taps = 0; }, 1500);
       if (++taps < 5) return;
       taps = 0; diag.on = !diag.on; ls.set('ic-diag', diag.on);
-      toast(diag.on ? 'Timing check on. It shows after each session.' : 'Timing check off.');
+      toast(diag.on ? 'Timing check on. Results show after each session.' : 'Timing check off.');
     });
   }
   function step() {
@@ -1620,7 +1851,7 @@
     for (const id of ['done', 'quiz', 'paused']) $(id).style.display = 'none';
     V.px = 0; resetStage(); $('bar').style.width = '0';
     const touch = matchMedia('(hover: none)').matches;
-    $('hint').textContent = (cfg.hint ? cfg.hint + ' · ' : '') + (touch ? 'Tap anywhere to stop' : 'Click or Esc to stop · Space to pause');
+    $('hint').textContent = (cfg.hint ? cfg.hint + ' ' : '') + (touch ? 'Tap the screen to stop.' : 'Click or press Esc to stop. Press Space to pause.');
     $('stopBtn').hidden = false;
     enterHistory();
     $('hint').style.opacity = 1;
@@ -1645,7 +1876,7 @@
     if (cfg.free) {
       const d = document.createElement('div');
       d.className = 'free';
-      d.textContent = 'Close your eyes and cycle through your list at your own pace. You’ll hear a chime when time is up.';
+      d.textContent = 'Close your eyes and run through your list at your own speed. A chime will tell you when to stop.';
       $('stage').replaceChildren(d);
     }
     S.t0 = performance.now();
@@ -1680,17 +1911,19 @@
     $('bar').style.width = '100%';
     $('stopBtn').hidden = true;
     const next = L && LEVELS.find(x => x.id === L.id + 1);
+    noteCtx = { kind: L ? `Level ${L.id}: ${L.name}` : 'Cycling session', list: listName(listId) };
+    $('noteIn').value = ''; $('noteBox').hidden = false;
     if (L) {
       trained[L.id] = true; ls.set('ic-trained', trained); renderLevels();
-      $('doneTitle').textContent = `Level ${L.id} complete ✨`;
+      $('doneTitle').textContent = `Level ${L.id} finished ✨`;
       $('doneMsg').textContent = next
-        ? `Nice work. Repeat this level until it feels easy, then move on to “${next.name}”.`
-        : 'You can now cycle your list entirely in your mind. Practise daily for a few minutes.';
+        ? `Well done. Repeat this level until it feels easy. Then try “${next.name}.”`
+        : 'You can now run your whole list in your mind. A few minutes a day keeps it going.';
       $('nextLevel').hidden = !next;
-      $('nextLevel').onclick = () => next && startTraining(next);
+      $('nextLevel').onclick = () => { saveNote(); if (next) startTraining(next); };
     } else {
-      $('doneTitle').textContent = 'Session complete ✨';
-      $('doneMsg').textContent = `You cycled ${items.length} goals for ${settings.dur} minute${settings.dur > 1 ? 's' : ''}. Now let it go and get on with your day.`;
+      $('doneTitle').textContent = 'All done ✨';
+      $('doneMsg').textContent = `You cycled ${items.length} goals for ${settings.dur} minute${settings.dur > 1 ? 's' : ''}. Now set it down and go enjoy your day.`;
       $('nextLevel').hidden = true;
     }
     const timing = diag.report();
@@ -1708,6 +1941,7 @@
   addEventListener('popstate', () => { if ($('session').classList.contains('on')) exit(true); });
   function exit(fromBack) {
     if (!$('session').classList.contains('on')) return;
+    saveNote();
     soundSession(false);
     if (!fromBack && history.state && history.state.icSession) { try { history.back(); } catch {} }
     $('stopBtn').hidden = true;
@@ -1756,11 +1990,11 @@
     const answer = items[i + dir];
     const pool = shuffle(items.filter(x => x !== answer && x !== items[i]));
     const opts = Q.opts = shuffle([answer, ...pool.slice(0, 3)]);
-    $('qProg').textContent = `Question ${Q.n + 1} of ${Q.total}`;
-    $('qScore').textContent = `Score ${Q.score}`;
+    $('qProg').textContent = `Round ${Q.n + 1} of ${Q.total}`;
+    $('qScore').textContent = `Correct: ${Q.score}`;
     const b = document.createElement('b');
-    b.textContent = dir > 0 ? 'next' : 'before it';
-    $('qAsk').replaceChildren('Which image comes ', b, ' in your list?');
+    b.textContent = dir > 0 ? 'right after' : 'right before';
+    $('qAsk').replaceChildren('Which picture comes ', b, ' this one?');
     const shown = tileFor(items[i]);
     const tag = document.createElement('span');
     tag.className = 'num'; tag.textContent = `#${i + 1}`;
@@ -1776,7 +2010,7 @@
         if (ok) Q.score++;
         btn.classList.add(ok ? 'right' : 'wrong');
         if (!ok) $('qOpts').children[opts.indexOf(answer)].classList.add('right');
-        $('qScore').textContent = `Score ${Q.score}`;
+        $('qScore').textContent = `Correct: ${Q.score}`;
         Q.n++;
         setTimeout(() => { if ($('quiz').style.display === 'flex') nextQuestion(); }, ok ? 600 : 1400);
       };
@@ -1787,10 +2021,11 @@
     $('quiz').style.display = 'none';
     trained.quiz = Math.max(trained.quiz || 0, Q.score);
     ls.set('ic-trained', trained); renderLevels();
-    $('doneTitle').textContent = `You scored ${Q.score}/10`;
+    noteCtx = null; $('noteBox').hidden = true;
+    $('doneTitle').textContent = `You got ${Q.score} out of 10`;
     $('doneMsg').textContent = Q.score >= 9
-      ? 'You know your list really well. You’re ready for the eyes-closed levels.'
-      : 'Keep practising with “Learn your list” and try again. Aim for 9 or 10.';
+      ? 'You know your order well. You’re ready for the levels with your eyes closed.'
+      : 'Spend more time on “Meet your list,” then try again. Aim for 9 or 10.';
     $('nextLevel').hidden = true;
     $('done').style.display = 'flex';
   }
@@ -1837,30 +2072,13 @@
   // ---------- Boot ----------
   (async () => {
     bindSettings(); renderStats(); setMode(settings.mode);
+    renderLists(); renderNotes();
     await openDB();
-    items = (await dbAll()).sort((a, b) => (a.order ?? Infinity) - (b.order ?? Infinity) || a.created - b.created);
-    if (items.some((it, i) => it.order !== i)) reorder();
+    await loadItems();
     try { persisted = !!(navigator.storage && navigator.storage.persisted && await navigator.storage.persisted()); } catch {}
     render();
     if (items.length) keepStorage();
   })();
-  // ---------- Anonymous first-open counter (GoatCounter) ----------
-  // Counts each device once, on its first open: a small marker is kept on the device after a
-  // successful count. Only on the real site, so previews and local testing never inflate the
-  // numbers, and not for people who send Do Not Track or Global Privacy Control.
-  const COUNT_HOST = 'kostas564.github.io', COUNT_URL = 'https://flipbookmind.goatcounter.com/count';
-  function countFirstOpen() {
-    try {
-      if (location.hostname !== COUNT_HOST || ls.get('ic-counted', false)) return;
-      if (navigator.doNotTrack === '1' || navigator.globalPrivacyControl) return;
-      window.goatcounter = { endpoint: COUNT_URL };
-      const sc = document.createElement('script');
-      sc.async = true; sc.src = 'https://gc.zgo.at/count.js'; sc.dataset.goatcounter = COUNT_URL;
-      sc.onload = () => ls.set('ic-counted', true); // blocked or offline: try again next time
-      document.head.appendChild(sc);
-    } catch {}
-  }
-  addEventListener('load', countFirstOpen);
   if ('serviceWorker' in navigator && location.protocol.startsWith('http')) {
     addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
   }

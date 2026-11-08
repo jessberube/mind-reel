@@ -1,8 +1,7 @@
 // Offline support. Bump VERSION when shipping changes to the app shell.
-const VERSION = 'ic-v30';
-const FONTS = ['fonts.css', 'fraunces-latin-standard-normal.woff2', 'fraunces-latin-ext-standard-normal.woff2',
-  'fraunces-latin-standard-italic.woff2', 'fraunces-latin-ext-standard-italic.woff2', 'inter-latin-wght-normal.woff2',
-  'inter-latin-ext-wght-normal.woff2', 'inter-greek-wght-normal.woff2', 'inter-greek-ext-wght-normal.woff2'].map(f => 'fonts/' + f);
+const VERSION = 'ic-v30-jb2';
+const FONTS = ['fonts.css', 'calistoga-latin-400.woff2', 'calistoga-latin-ext-400.woff2',
+  ...[400, 500, 600, 700].flatMap(w => [`poppins-latin-${w}.woff2`, `poppins-latin-ext-${w}.woff2`])].map(f => 'fonts/' + f);
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon.svg', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', ...FONTS];
 
 self.addEventListener('install', e => {

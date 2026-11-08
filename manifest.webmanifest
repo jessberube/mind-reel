@@ -1,13 +1,13 @@
 {
-  "name": "Flipbook Mind",
-  "short_name": "Flipbook Mind",
-  "description": "A free rapid-imaging practice tool inspired by William Bengston’s Image Cycling® technique.",
+  "name": "Mind Reel",
+  "short_name": "Mind Reel",
+  "description": "A cozy place to practice rapid image cycling with your own goals.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "orientation": "any",
-  "background_color": "#07051a",
-  "theme_color": "#07051a",
+  "background_color": "#1F2F38",
+  "theme_color": "#1F2F38",
   "icons": [
     { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml" },
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
