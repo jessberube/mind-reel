@@ -572,7 +572,7 @@
     <div id="cardCtl" class="cardctl" hidden>
       <label class="cardrow" for="cardStyle"><span>Text card colors</span>
         <select id="cardStyle">
-          <option value="colourful">Brand mix</option>
+          <option value="colourful">Slate and Aqua</option>
           <option value="plain">Pick my own</option>
         </select>
       </label>
@@ -703,7 +703,7 @@
     <p>Nothing here is medical advice. This app does not diagnose, treat, or cure anything. For health concerns, talk to a doctor.</p>
     <p><b>Flashing:</b> this app flashes pictures quickly. If you have epilepsy or are sensitive to light, keep speeds slow and stop if you feel unwell.</p>
     <p>This app comes as is, with no warranty. Use it at your own risk. Your pictures and goals stay on your device. They are never uploaded.</p>
-    <p>Built from <a href="https://github.com/kostas564/flipbook-mind" target="_blank" rel="noopener">Flipbook Mind</a>, an open-source app shared under the MIT License.</p>
+    <p>Adapted from Flipbook Mind, an open-source app shared under the MIT License.</p>
   </footer>
 </div>
 
@@ -810,12 +810,8 @@
   // flashing-safety rules (a bright or red background would flash harder).
   const CARD_BG = { slate: ['Slate', '#2C414D'], deepslate: ['Deep slate', '#1F2F38'], darkolive: ['Dark olive', '#3E4510'], cocoa: ['Cocoa', '#3A3328'], black: ['Black', '#000000'], charcoal: ['Charcoal', '#1f1f23'], navy: ['Navy', '#0b1f3a'], forest: ['Forest green', '#0f2e1d'], plum: ['Plum', '#2a1238'] };
   const CARD_FG = { cream: ['Cream', '#F5F4EE'], chartreuse: ['Chartreuse', '#E9F056'], aqua: ['Aqua', '#DDEFF0'], sand: ['Sand', '#E8DDC8'], white: ['White', '#ffffff'], sky: ['Sky blue', '#9fd3ff'], mint: ['Mint', '#9df0c6'], lavender: ['Lavender', '#cdb8ff'], gold: ['Gold', '#ffd166'] };
-  // "Brand mix" text cards: dark, cozy pairs built from the brand palette, so cream text stays readable
-  // and nothing bright flashes.
-  const GRADIENTS = [
-    ['#2C414D','#1F2F38'], ['#3E4510','#6B7114'], ['#1F2F38','#3C5866'], ['#3A3328','#5C5040'],
-    ['#23403F','#35605E'], ['#2C414D','#4E5B2A'], ['#33302A','#4F5A12'], ['#1F2F38','#2E4A44']
-  ];
+  // Default text cards: Slate with Aqua words and an Aqua edge along the bottom.
+  const CARD_DEFAULT = { bg: '#2C414D', fg: '#DDEFF0', edge: '#DDEFF0' };
   // WCAG 2.3.1: no more than three flashes in any one second. Faster speeds need an explicit opt-in,
   // and the device's Reduce Motion setting caps everything at one image per second.
   const SAFE_RATE = 3, FAST_RATE = 10;
@@ -953,14 +949,10 @@
     return urls.get(it.id);
   };
   const dropUrl = id => { if (urls.has(id)) { URL.revokeObjectURL(urls.get(id)); urls.delete(id); } };
-  // How a text card looks right now: a colourful gradient, or the chosen plain colours.
-  const cardLook = it => settings.cards === 'plain'
+  // How a text card looks right now: the default Slate and Aqua card, or the chosen plain colors.
+  const cardLook = () => settings.cards === 'plain'
     ? { plain: true, bg: CARD_BG[settings.cardBg][1], fg: CARD_FG[settings.cardFg][1] }
-    : { plain: false, gradient: gradient(it) };
-  const gradient = it => {
-    const [a, b] = GRADIENTS[(it.color || 0) % GRADIENTS.length];
-    return `linear-gradient(135deg, ${a}, ${b})`;
-  };
+    : Object.assign({ plain: false }, CARD_DEFAULT);
   // Image items may carry a caption in `text`; text-only items are just `text`.
   function tileFor(it) {
     const tile = document.createElement('div');
@@ -979,7 +971,10 @@
       if (look.plain) {
         tile.style.background = look.bg; tile.style.color = look.fg;
         tile.style.boxShadow = 'inset 0 0 0 1px rgba(255, 255, 255, 0.22), 0 6px 18px rgba(0, 0, 0, 0.35)';
-      } else tile.style.background = look.gradient;
+      } else {
+        tile.style.background = look.bg; tile.style.color = look.fg;
+        tile.style.boxShadow = `inset 0 -5px 0 ${look.edge}, 0 6px 18px rgba(44, 65, 77, 0.2)`;
+      }
       tile.textContent = it.text;
     }
     return tile;
@@ -1051,7 +1046,7 @@
     const n = items.length, c = $('count');
     c.textContent = n === 0 ? '' : n >= 20
       ? `${n} goals. You’re all set.`
-      : `${n} goal${n === 1 ? '' : 's'} so far. ${20 - n} more gets you to 20.`;
+      : `Add ${20 - n} more.`;
     c.classList.toggle('ok', n >= 20);
     $('startBtn').disabled = n < 2;
     $('exportBtn').hidden = !anyItems();
@@ -1763,19 +1758,14 @@
   function textFrame(it, px) {
     const c = blankFrame(px), g = c.getContext('2d'), k = px / cssFrame();
     const look = cardLook(it);
-    if (look.plain) g.fillStyle = look.bg;
-    else {
-      const [c1, c2] = GRADIENTS[(it.color || 0) % GRADIENTS.length];
-      const grad = g.createLinearGradient(0, 0, px, px);
-      grad.addColorStop(0, c1); grad.addColorStop(1, c2);
-      g.fillStyle = grad;
-    }
+    g.fillStyle = look.bg;
     g.beginPath();
     if (g.roundRect) g.roundRect(0, 0, px, px, 32 * k); else g.rect(0, 0, px, px);
     g.fill();
+    if (look.edge) { g.save(); g.clip(); g.fillStyle = look.edge; g.fillRect(0, px * 0.955, px, px * 0.045); g.restore(); }
     const size = Math.min(51.2, Math.max(24, innerWidth * 0.05)) * k, pad = 24 * k;
     g.font = `400 ${size}px "Calistoga", Georgia, serif`;
-    g.fillStyle = look.plain ? look.fg : '#F5F4EE'; g.textAlign = 'center'; g.textBaseline = 'middle';
+    g.fillStyle = look.fg; g.textAlign = 'center'; g.textBaseline = 'middle';
     const lines = wrapLines(g, it.text || "", px - pad * 2), lh = size * 1.55;
     lines.forEach((l, i) => g.fillText(l, px / 2, px / 2 + (i - (lines.length - 1) / 2) * lh));
     return c;

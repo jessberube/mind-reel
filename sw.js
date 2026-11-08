@@ -1,5 +1,5 @@
 // Offline support. Bump VERSION when shipping changes to the app shell.
-const VERSION = 'ic-v30-jb5';
+const VERSION = 'ic-v30-jb6';
 const FONTS = ['fonts.css', 'calistoga-latin-400.woff2', 'calistoga-latin-ext-400.woff2',
   ...[400, 500, 600, 700].flatMap(w => [`poppins-latin-${w}.woff2`, `poppins-latin-ext-${w}.woff2`])].map(f => 'fonts/' + f);
 const SHELL = ['./', 'index.html', 'manifest.webmanifest', 'icon.svg', 'icon-192.png', 'icon-512.png', 'apple-touch-icon.png', ...FONTS];
