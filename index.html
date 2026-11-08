@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' blob: data:; connect-src 'self' data:; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#1F2F38">
+<meta name="theme-color" content="#2C414D">
 <meta name="description" content="A cozy place to practice rapid image cycling with your own goals. Everything stays on your device.">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -17,23 +17,23 @@
 <link rel="stylesheet" href="fonts/fonts.css">
 <style>
   :root {
-    color-scheme: dark;
-    --bg: #1F2F38;
-    --surface: rgba(44, 65, 77, 0.82);
-    --surface-2: rgba(245, 244, 238, 0.08);
-    --text: #F5F4EE;
-    --muted: #C9CBC0;
-    --border: rgba(232, 221, 200, 0.16);
-    --accent: #E9F056;
-    --accent-soft: rgba(233, 240, 86, 0.14);
-    --gold: #E9F056;
-    --pink: #8C941A;
-    --violet: #8C941A;
+    color-scheme: light;
+    --bg: #F5F4EE;
+    --surface: #FBFAF6;
+    --surface-2: transparent;
+    --text: #2C414D;
+    --muted: #55666F;
+    --border: rgba(44, 65, 77, 0.14);
+    --accent: #2C414D;
+    --accent-soft: rgba(44, 65, 77, 0.12);
+    --gold: #6B7114;
+    --pink: #2C414D;
+    --violet: #2C414D;
     --good: #9CD3A8;
     --bad: #F09A8E;
     --grad: linear-gradient(120deg, #E9F056 0%, #E9F056 100%);
     --grad-text: linear-gradient(100deg, #E9F056 0%, #E9F056 100%);
-    --glow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    --glow: none;
     --display: "Calistoga", Georgia, serif;
   }
   * { box-sizing: border-box; }
@@ -436,6 +436,61 @@
     position: absolute; bottom: calc(64px + env(safe-area-inset-bottom)); left: 16px; right: 16px; text-align: center; color: #fff;
     font-family: var(--display); font-size: clamp(1.2rem, 4vw, 2rem); font-weight: 400; text-shadow: 0 2px 14px #000;
   }
+
+  /* Clean light and dark mix: light page, dark header and highlights, dark session screens */
+  .sky { display: none; }
+  header { background: #2C414D; color: #F5F4EE; padding: 22px 24px; border-radius: 20px; }
+  header h1 { color: #F5F4EE; }
+  header .sub { color: rgba(245, 244, 238, 0.78); }
+  .stats > div { background: rgba(245, 244, 238, 0.08); border-color: rgba(245, 244, 238, 0.16); color: rgba(245, 244, 238, 0.8); backdrop-filter: none; }
+  .stats b { color: #E9F056; }
+  .orb { animation: none; box-shadow: none; }
+  .card, details, .tabs { backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .card { border-radius: 20px; box-shadow: 0 1px 2px rgba(44, 65, 77, 0.05), 0 8px 24px rgba(44, 65, 77, 0.06); }
+  input[type="text"], select, textarea { background: #FFFFFE; }
+  input[type="text"]::placeholder, textarea::placeholder { color: #7A8890; }
+  button, .btn { background: transparent; border-color: rgba(44, 65, 77, 0.25); }
+  button:hover, .btn:hover { border-color: #2C414D; transform: none; }
+  .primary { background: #2C414D; color: #F5F4EE; border-color: #2C414D; box-shadow: none; }
+  .primary:hover { background: #1F2F38; border-color: #1F2F38; box-shadow: none; }
+  .start .primary { background: #E9F056; color: #1F2F38; border-color: #2C414D; }
+  .start .primary:hover { background: #E9F056; border-color: #1F2F38; box-shadow: 0 6px 18px rgba(44, 65, 77, 0.18); }
+  .tabs { background: #E8DDC8; border-color: transparent; }
+  .tabs button:hover { background: rgba(44, 65, 77, 0.06); }
+  .tabs button[aria-selected="true"] { background: #2C414D; color: #F5F4EE; box-shadow: none; }
+  .tabs button[aria-selected="true"] small { color: rgba(245, 244, 238, 0.8); }
+  input[type="range"] { background: rgba(44, 65, 77, 0.18); }
+  input[type="range"]::-webkit-slider-thumb { border-color: #2C414D; box-shadow: none; }
+  input[type="range"]::-moz-range-thumb { border-color: #2C414D; box-shadow: none; }
+  .info details { background: #F5F4EE; }
+  .info a, details a, .disclaimer a { color: #2C414D; text-decoration-color: #8C941A; text-underline-offset: 3px; }
+  .disclaimer { background: #E8DDC8; border-color: transparent; }
+  .disclaimer h2 { color: #2C414D; }
+  .level { background: #F5F4EE; }
+  .level:hover { border-color: rgba(44, 65, 77, 0.35); transform: none; }
+  .level.done .badge { background: #2C414D; color: #E9F056; }
+  .level.next { border-color: #2C414D; box-shadow: 0 0 0 1px #2C414D; }
+  select option { background: #FFFFFE; color: #2C414D; }
+  button.swatch { border-color: rgba(44, 65, 77, 0.25); }
+  button.swatch:hover { border-color: rgba(44, 65, 77, 0.6); }
+  button.swatch[aria-pressed="true"] { border-color: #FFFFFE; }
+  dialog { background: #F5F4EE; box-shadow: 0 24px 60px rgba(44, 65, 77, 0.25); }
+  dialog::backdrop { background: rgba(31, 47, 56, 0.55); }
+  #toast { background: #2C414D; color: #F5F4EE; border-color: transparent; }
+  #toast button { color: #F5F4EE; border-color: rgba(245, 244, 238, 0.3); }
+  .nag { background: #2C414D; color: #F5F4EE; border: none; }
+  .nag b { color: #E9F056; }
+  .nag button { color: #F5F4EE; border-color: rgba(245, 244, 238, 0.3); }
+  .nag .primary { background: #E9F056; color: #1F2F38; border-color: #E9F056; }
+  .notes li { background: #F5F4EE; }
+  /* The session screens stay dark */
+  #session :focus-visible { outline-color: #E9F056; }
+  #paused { color: #F5F4EE; }
+  #done button, #paused button, #quiz .xbtn { color: #F5F4EE; border-color: rgba(245, 244, 238, 0.3); background: rgba(245, 244, 238, 0.06); }
+  #done .primary, #paused .primary { background: #E9F056; color: #1F2F38; border-color: #E9F056; }
+  #done textarea { background: rgba(0, 0, 0, 0.22); color: #F5F4EE; border-color: rgba(245, 244, 238, 0.2); }
+  #done textarea::placeholder { color: #9AA7A6; }
+  #done textarea:focus { border-color: #E9F056; box-shadow: 0 0 0 4px rgba(233, 240, 86, 0.18); }
 </style>
 
 </head>
